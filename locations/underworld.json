@@ -27,15 +27,13 @@
     {
         "name": "Lumberjack Cave",
         "parent": "Light World",
-        "access_rules": [
-            "world_state_open",
-            "world_state_inverted,pearl"
-        ],
         "sections": [
             {
                 "name": "Cave",
                 "access_rules": [
-                    "aga,boots",
+                    "world_state_open,aga,boots",
+                    "world_state_inverted,aga,pearl,boots",
+                    "world_state_inverted,aga,[pearl],boots,mirror",
                     "{}"
                 ],
                 "capture_item": true,
@@ -263,8 +261,9 @@
             },
             {
                 "map": "darkworld",
-                "x": 1146,
-                "y": 530,
+                "x": 1132,
+                "y": 549,
+                "size": 48,
                 "restrict_visibility_rules": [ "world_state_open,entrance_shuffle_singleentryvanilla,glitch_mode_none" ]
             }
         ]
@@ -375,6 +374,7 @@
                 "map": "darkworld",
                 "x": 354,
                 "y": 1560,
+                "size": 48,
                 "restrict_visibility_rules": [ "world_state_open,entrance_shuffle_singleentryvanilla,glitch_mode_none" ]
             }
         ]
@@ -431,6 +431,7 @@
                 "map": "darkworld",
                 "x": 552,
                 "y": 1693,
+                "size": 48,
                 "restrict_visibility_rules": [ "world_state_open,entrance_shuffle_singleentryvanilla,glitch_mode_none" ]
             }
         ]
@@ -682,7 +683,8 @@
             {
                 "map": "darkworld",
                 "x": 1694,
-                "y": 204,
+                "y": 194,
+                "size": 48,
                 "restrict_visibility_rules": [ "world_state_open,entrance_shuffle_off,glitch_mode_none" ]
             }
         ]
@@ -844,11 +846,12 @@
         "parent": "Dark World Color",
         "access_rules": [
             "world_state_open,@East Dark World,pearl,crystal56:2",
+            "world_state_open,@East Dark World,pearl,crystal:7",
             "world_state_open,@East Dark World,pearl,prize:10",
             "world_state_open,glitch_mode_ow,boots,mirror",
             "world_state_inverted,@East Dark World,crystal56:2",
-            "world_state_inverted,@East Dark World,prize:10",
-            "world_state_inverted,glitch_mode_ow,pearl,boots,mirror"
+            "world_state_inverted,@East Dark World,crystal:7",
+            "world_state_inverted,@East Dark World,prize:10"
         ],
         "sections": [
             {

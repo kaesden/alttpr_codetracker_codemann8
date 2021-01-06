@@ -102,7 +102,7 @@
                 "chest_unopened_img": "images/door_closed.png",
                 "chest_opened_img": "images/door_open.png",
                 "capture_item": true,
-                "capture_item_layout": "tracker_capture_entrance",
+                "capture_item_layout": "tracker_capture_entrance_insanity",
                 "item_count": 1,
                 "hosted_item": "light_world"
             }
@@ -201,7 +201,7 @@
                 "chest_unopened_img": "images/door_closed.png",
                 "chest_opened_img": "images/door_open.png",
                 "capture_item": true,
-                "capture_item_layout": "tracker_capture_entrance",
+                "capture_item_layout": "tracker_capture_entrance_insanity",
                 "item_count": 1,
                 "hosted_item": "light_world"
             }
@@ -332,7 +332,7 @@
                 "chest_unopened_img": "images/door_closed.png",
                 "chest_opened_img": "images/door_open.png",
                 "capture_item": true,
-                "capture_item_layout": "tracker_capture_entrance",
+                "capture_item_layout": "tracker_capture_entrance_insanity",
                 "item_count": 1,
                 "hosted_item": "light_world"
             }
@@ -824,7 +824,7 @@
                 "chest_unopened_img": "images/door_closed.png",
                 "chest_opened_img": "images/door_open.png",
                 "capture_item": true,
-                "capture_item_layout": "tracker_capture_entrance",
+                "capture_item_layout": "tracker_capture_entrance_insanity",
                 "item_count": 1,
                 "hosted_item": "light_world"
             }
@@ -1149,7 +1149,7 @@
                 "chest_unopened_img": "images/door_closed.png",
                 "chest_opened_img": "images/door_open.png",
                 "capture_item": true,
-                "capture_item_layout": "tracker_capture_entrance",
+                "capture_item_layout": "tracker_capture_entrance_insanity",
                 "item_count": 1,
                 "hosted_item": "light_world"
             }
@@ -1315,7 +1315,7 @@
                 "chest_unopened_img": "images/door_closed.png",
                 "chest_opened_img": "images/door_open.png",
                 "capture_item": true,
-                "capture_item_layout": "tracker_capture_entrance",
+                "capture_item_layout": "tracker_capture_entrance_insanity",
                 "item_count": 1,
                 "hosted_item": "light_world"
             }
@@ -1453,7 +1453,7 @@
                 "chest_unopened_img": "images/door_closed.png",
                 "chest_opened_img": "images/door_open.png",
                 "capture_item": true,
-                "capture_item_layout": "tracker_capture_entrance",
+                "capture_item_layout": "tracker_capture_entrance_insanity",
                 "item_count": 1
             }
         ],
@@ -1513,7 +1513,7 @@
                 "chest_unopened_img": "images/door_closed.png",
                 "chest_opened_img": "images/door_open.png",
                 "capture_item": true,
-                "capture_item_layout": "tracker_capture_entrance",
+                "capture_item_layout": "tracker_capture_entrance_insanity",
                 "item_count": 1
             }
         ],
@@ -1812,7 +1812,7 @@
             {
                 "name": "Entrance",
                 "access_rules": [
-                    "nothing"
+                    "glitch_mode_owg,@Mire Area,mirror"
                 ],
                 "chest_unopened_img": "images/door_closed.png",
                 "chest_opened_img": "images/door_open.png",
@@ -1957,8 +1957,8 @@
             },
             {
                 "map": "darkworld",
-                "x": 542,
-                "y": 1653,
+                "x": 552,
+                "y": 1693,
                 "size": 48,
                 "restrict_visibility_rules": [ "glitch_mode_none,entrance_shuffle_all,world_state_open" ]
             }
@@ -1996,12 +1996,6 @@
                 "restrict_visibility_rules": [ "entrance_shuffle_singleentryvanilla" ]
             },
             {
-                "map": "darkworld",
-                "x": 540,
-                "y": 1885,
-                "restrict_visibility_rules": [ "glitch_mode_none,entrance_shuffle_singleentryvanilla,world_state_open" ]
-            },
-            {
                 "map": "lightworld",
                 "x": 448,
                 "y": 1852,
@@ -2013,7 +2007,7 @@
                 "x": 540,
                 "y": 1885,
                 "size": 48,
-                "restrict_visibility_rules": [ "glitch_mode_none,entrance_shuffle_all,world_state_open" ]
+                "restrict_visibility_rules": [ "glitch_mode_none,world_state_open" ]
             }
         ]
     },
@@ -2370,8 +2364,9 @@
             {
                 "map": "darkworld",
                 "x": 1450,
-                "y": 1666,
-                "restrict_visibility_rules": [ "entrance_shuffle_singleentryvanilla,world_state_open,glitch_mode_none" ]
+                "y": 1676,
+                "size": 48,
+                "restrict_visibility_rules": [ "glitch_mode_none,world_state_open" ]
             },
             {
                 "map": "lightworld",
@@ -2379,13 +2374,6 @@
                 "y": 1666,
                 "size": 64,
                 "restrict_visibility_rules": [ "entrance_shuffle_all" ]
-            },
-            {
-                "map": "darkworld",
-                "x": 1450,
-                "y": 1666,
-                "size": 48,
-                "restrict_visibility_rules": [ "entrance_shuffle_all,world_state_open,glitch_mode_none" ]
             }
         ]
     },
@@ -2951,6 +2939,7 @@
                 "map": "darkworld",
                 "x": 1627,
                 "y": 40,
+                "size": 48,
                 "restrict_visibility_rules": [ "entrance_shuffle_singleentryvanilla,world_state_open,glitch_mode_none" ]
             },
             {
@@ -3217,6 +3206,7 @@
     },
     {
         "name": "Waterfall Fairy Cave",
+        "short_name": "Waterfall Fairy",
         "parent": "Zora Area",
         "access_rules": [
             "world_state_open,flippers",
@@ -4145,7 +4135,7 @@
                 "chest_unopened_img": "images/door_closed.png",
                 "chest_opened_img": "images/door_open.png",
                 "capture_item": true,
-                "capture_item_layout": "tracker_capture_entrance",
+                "capture_item_layout": "tracker_capture_entrance_insanity",
                 "item_count": 1,
                 "hosted_item": "dw_east"
             }
@@ -4157,6 +4147,38 @@
                 "y": 976,
                 "size": 64,
                 "restrict_visibility_rules": [ "entrance_shuffle_insanity,world_state_open" ]
+            }
+        ]
+    },
+    {
+        "name": "Ganon Sign",
+        "parent": "Dark World Color",
+        "access_rules": [
+            "world_state_open,@East Dark World",
+            "world_state_inverted,@Castle Second Floor"
+        ],
+        "sections": [
+            {
+                "name": "Sign",
+                "chest_unopened_img": "images/ganon_crystals.png",
+                "chest_opened_img": "images/ganon_crystals.png",
+                "item_count": 1
+            }
+        ],
+        "map_locations": [
+            {
+                "map": "darkworld",
+                "x": 940,
+                "y": 880,
+                "size": 48,
+                "restrict_visibility_rules": [ "world_state_open,$ganonCrystalUnknown" ]
+            },
+            {
+                "map": "lightworld",
+                "x": 1082,
+                "y": 823,
+                "size": 48,
+                "restrict_visibility_rules": [ "world_state_inverted,$ganonCrystalUnknown" ]
             }
         ]
     },
@@ -4928,7 +4950,8 @@
                 "map": "lightworld",
                 "x": 669,
                 "y": 315,
-                "restrict_visibility_rules": [ "entrance_shuffle_singleentryvanilla,world_state_inverted" ]
+                "size": 48,
+                "restrict_visibility_rules": [ "glitch_mode_none,entrance_shuffle_singleentryvanilla,world_state_inverted" ]
             },
             {
                 "map": "darkworld",
@@ -5080,6 +5103,39 @@
                 "y": 294,
                 "size": 64,
                 "restrict_visibility_rules": [ "entrance_shuffle_all" ]
+            }
+        ]
+    },
+    {
+        "name": "Ganon's Tower Sign",
+        "short_name": "GT Sign",
+        "parent": "Dark Death Mountain Color",
+        "access_rules": [
+            "world_state_open,@Dark Death Mountain Top",
+            "world_state_inverted,@Castle Second Floor"
+        ],
+        "sections": [
+            {
+                "name": "Sign",
+                "chest_unopened_img": "images/GTSign.png",
+                "chest_opened_img": "images/GTSign.png",
+                "item_count": 1
+            }
+        ],
+        "map_locations": [
+            {
+                "map": "darkworld",
+                "x": 1046,
+                "y": 89,
+                "size": 48,
+                "restrict_visibility_rules": [ "world_state_open,$gtCrystalUnknown" ]
+            },
+            {
+                "map": "lightworld",
+                "x": 924,
+                "y": 823,
+                "size": 48,
+                "restrict_visibility_rules": [ "world_state_inverted,$gtCrystalUnknown" ]
             }
         ]
     },

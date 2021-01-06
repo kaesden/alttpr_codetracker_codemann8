@@ -4,175 +4,79 @@ NEW_KEY_SYSTEM = false
 
 DUNGEON_PRIZE_DATA = 0x0000
 
-CaptureBadgeEntrances = {
-    "@Forest Chest Game/Entrance",
-    "@Lumberjack House/Entrance",
-    "@Kakariko Fortune Teller/Entrance",
-    "@Left Snitch House/Entrance",
-    "@Blind's House Entrance/Entrance",
-    "@Elder Left Door/Entrance",
-    "@Elder Right Door/Entrance",
-    "@Right Snitch House/Entrance",
-    "@Chicken House Entrance/Entrance",
-    "@Sick Kid Entrance/Entrance",
-    "@Grass House/Entrance",
-    "@Bomb Hut/Entrance",
-    "@Kakariko Shop/Entrance",
-    "@Tavern Entrance/Entrance",
-    "@Smith's House/Entrance",
-    "@Quarreling Brothers Left/Entrance",
-    "@Quarreling Brothers Right/Entrance",
-    "@Library Entrance/Entrance",
-    "@Kakariko Chest Game/Entrance",
-    "@North Bonk Rocks/Entrance",
-    "@Old Man Home/Entrance",
-    "@Graveyard Ledge Cave/Entrance",
-    "@King's Tomb Grave/Entrance",
-    "@Castle Left Entrance/Entrance",
-    "@Agahnim's Tower Entrance/Entrance",
-    "@Castle Right Entrance/Entrance",
-    "@Castle Main Entrance/Entrance",
-    "@Witch's Hut/Entrance",
-    "@Sahasrala's Hut Entrance/Entrance",
-    "@Eastern Palace Entrance/Entrance",
-    "@Trees Fairy Cave/Entrance",
-    "@Long Fairy Cave/Entrance",
-    "@Desert Back Entrance/Entrance",
-    "@Desert Left Entrance/Entrance",
-    "@Desert Front Entrance/Entrance",
-    "@Desert Right Entrance/Entrance",
-    "@Checkerboard Cave Entrance/Entrance",
-    "@Aginah's Cave Entrance/Entrance",
-    "@Cave 45 Entrance/Entrance",
-    "@Desert Fairy Cave/Entrance",
-    "@Fifty Rupee Cave/Entrance",
-    "@Dam Entrance/Entrance",
-    "@Central Bonk Rocks/Entrance",
-    "@Link's House Entrance/Entrance",
-    "@Hype Fairy Cave/Entrance",
-    "@Lake Fortune Teller/Entrance",
-    "@Mini Moldorm Cave Entrance/Entrance",
-    "@Lake Shop/Entrance",
-    "@Upgrade Fairy/Entrance",
-    "@Ice Rod Cave Entrance/Entrance",
-    "@Cold Bee Cave/Entrance",
-    "@Twenty Rupee Cave/Entrance",
-    "@Death Mountain Descent Front/Entrance",
-    "@Death Mountain Descent Back/Entrance",
-    "@Death Mountain Entry Cave/Entrance",
-    "@Death Mountain Entry Back/Entrance",
-    "@Tower of Hera Entrance/Entrance",
-    "@Spectacle Rock Top/Entrance",
-    "@Spectacle Rock Left/Entrance",
-    "@Spectacle Rock Bottom/Entrance",
-    "@Old Man Back Door/Entrance",
-    "@Paradox Cave Top/Entrance",
-    "@Spiral Cave Top/Entrance",
-    "@Mimic Cave Entrance/Entrance",
-    "@Fairy Ascension Top/Entrance",
-    "@Spiral Cave Bottom/Entrance",
-    "@Fairy Ascension Bottom/Entrance",
-    "@Hookshot Fairy Cave/Entrance",
-    "@Paradox Cave Bottom/Entrance",
-    "@Waterfall Fairy Cave/Entrance",
-    "@Paradox Cave Middle/Entrance",
-    "@Skull Woods Back/Entrance",
-    "@Dark Lumberjack/Entrance",
-    "@Dark Chapel/Entrance",
-    "@Shield Shop/Entrance",
-    "@Village of Outkasts Fortune Teller/Entrance",
-    "@Chest Game Entrance/Entrance",
-    "@Thieves Town Entrance/Entrance",
-    "@C-Shaped House Entrance/Entrance",
-    "@Hammer House/Entrance",
-    "@Brewery Entrance/Entrance",
-    "@Hammer Pegs Cave/Entrance",
-    "@Archery Game/Entrance",
-    "@Pyramid Fairy Cave/Entrance",
-    "@Dark Witch's Hut/Entrance",
-    "@Dark Sahasrahla/Entrance",
-    "@Palace of Darkness Entrance/Entrance",
-    "@Dark Trees Fairy/Entrance",
-    "@East Storyteller Cave/Entrance",
-    "@Mire Shed Cave/Entrance",
-    "@Misery Mire Entrance/Entrance",
-    "@Mire Fairy/Entrance",
-    "@Mire Hint Cave/Entrance",
-    "@Swamp Palace Entrance/Entrance",
-    "@Dark Bonk Rocks/Entrance",
-    "@Bomb Shop/Entrance",
-    "@Hype Cave Entrance/Entrance",
-    "@Dark Lake Shop/Entrance",
-    "@Ice Palace Entrance/Entrance",
-    "@Dark Lake Hylia Fairy/Entrance",
-    "@Hamburger Helper Cave/Entrance",
-    "@Spike Hint Cave/Entrance",
-    "@Bumper Cave Top/Entrance",
-    "@Bumper Cave Bottom/Entrance",
-    "@Dark Mountain Fairy/Entrance",
-    "@Spike Cave Entrance/Entrance",
-    "@Ganon's Tower Entrance/Entrance",
-    "@Hookshot Cave Island/Entrance",
-    "@Hookshot Cave Entrance/Entrance",
-    "@Superbunny Cave Top/Entrance",
-    "@Turtle Ledge Left Entrance/Entrance",
-    "@Turtle Ledge Right Entrance/Entrance",
-    "@Turtle Laser Bridge Entrance/Entrance",
-    "@Superbunny Cave Bottom/Entrance",
-    "@Dark Death Mountain Shop/Entrance",
-    "@Turtle Rock Entrance/Entrance"
-}
+ROOMSLOTS = { 0, 0, 0, 0 }
 
-CaptureBadgeDropdowns = {
-    "@Forest Hideout Drop/Dropdown",
-    "@Lumberjack Tree/Dropdown",
-    "@Kakariko Well Drop/Dropdown",
-    "@Magic Bat Drop/Dropdown",
-    "@Secret Passage Drop/Dropdown",
-    "@Useless Fairy Drop/Dropdown",
-    "@Sanctuary Grave/Dropdown",
-    "@Castle Hole/Dropdown",
-    "@Pyramid Hole/Dropdown"
-}
-
-CaptureBadgeInsanity = {
-    "@Forest Hideout Exit/Entrance",
-    "@Lumberjack Tree Exit/Entrance",
-    "@Kakariko Well Exit/Entrance",
-    "@Magic Bat Exit/Entrance",
-    "@Sanctuary Exit/Entrance",
-    "@Useless Fairy Exit/Entrance",
-    "@Secret Passage Exit/Entrance",
-    "@Pyramid Hole Exit/Entrance",
-    "@Castle Hole Exit/Entrance",
-    "@Skull Woods Back South/Entrance",
-    "@Skull Woods Front Right/Entrance",
-    "@Skull Woods Front Left/Entrance",
-    "@Skull Woods Back Drop/Dropdown",
-    "@Skull Woods Big Chest Drop/Dropdown",
-    "@Skull Woods Front Right Drop/Dropdown",
-    "@Skull Woods Front Left Drop/Dropdown"
-}
-
-CaptureBadgeOverworld = {
-    "@Master Sword Pedestal/Pedestal",
-    "@Mushroom Spot/Shroom",
-    "@Race Game/Take This Trash",
-    "@Desert Ledge/Ledge",
-    "@Bombos Tablet/Tablet",
-    "@Lake Hylia Island/Island",
-    "@Ether Tablet/Tablet",
-    "@Spectacle Rock/Up On Top",
-    "@Floating Island/Island",
-    "@Zora's Domain/Ledge",
-    "@Bumper Ledge/Ledge"
-}
-
-CaptureBadgeUnderworld = {
-    "@Forest Hideout/Stash",
-    "@Lumberjack Cave/Cave",
-    "@Library/On The Shelf",
-    "@Cave 45/Circle of Bushes"
+DOORSLOTS = { -- 1  2  3  4  5  6  7  8  9  10 11 12 13 14 15 16
+    [0x01] = {0, 1, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    --[0x07] = {0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1},--Moldorm Boss Arena
+    [0x09] = {0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0},
+    [0x0a] = {0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0},
+    [0x0c] = {1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0},
+    [0x11] = {0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0},
+    [0x14] = {0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0},
+    [0x15] = {1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    [0x17] = {1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0},
+    [0x1a] = {0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0},
+    [0x1e] = {0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 1, 0},
+    [0x24] = {1, 0, 5, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    [0x26] = {0, 1, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0},
+    [0x27] = {1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0},
+    [0x2a] = {1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0},
+    [0x2b] = {1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0},
+    [0x31] = {0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0},
+    [0x34] = {0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0},
+    [0x35] = {0, 0, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0},
+    [0x36] = {0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0},
+    [0x37] = {0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0},
+    [0x38] = {1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    [0x3a] = {1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 0, 0},
+    [0x45] = {1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    [0x4a] = {1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0},
+    [0x4d] = {1, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+    [0x52] = {0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0},
+    [0x56] = {0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0},
+    [0x58] = {0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0},
+    [0x5e] = {0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0},
+    [0x5f] = {0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0},
+    [0x60] = {0, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0},
+    [0x61] = {0, 1, 0, 1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0},
+    [0x62] = {1, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0},
+    [0x67] = {0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0},
+    [0x68] = {0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    [0x72] = {0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0},
+    [0x74] = {0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 0, 1, 0, 0, 0, 0},
+    [0x76] = {1, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0},
+    [0x77] = {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1},
+    [0x7d] = {0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0},
+    [0x7e] = {0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0},
+    [0x81] = {1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0},
+    [0x84] = {1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0},
+    [0x85] = {1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0},
+    [0x8b] = {1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0},
+    [0x8c] = {1, 0, 1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0},
+    [0x8d] = {0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0},
+    [0x97] = {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0},
+    [0x9c] = {1, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    [0x9e] = {0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1},
+    [0xa2] = {0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0},
+    [0xa8] = {0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0},
+    [0xa9] = {0, 5, 0, 1, 1, 0, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0},
+    [0xb1] = {0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 5, 0, 0, 0},
+    [0xb2] = {0, 5, 1, 0, 0, 0, 1, 0, 1, 1, 0, 1, 0, 0, 0, 0},
+    [0xb3] = {1, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0},
+    [0xbb] = {1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0},
+    [0xbc] = {1, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0},
+    [0xbe] = {0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0},
+    [0xc1] = {0, 0, 1, 0, 0, 0, 1, 0, 1, 1, 0, 1, 0, 0, 0, 0},
+    [0xc2] = {1, 0, 1, 1, 0, 1, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0},
+    [0xc3] = {1, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    [0xc5] = {1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0},
+    [0xc6] = {1, 0, 1, 0, 0, 0, 1, 0, 1, 1, 0, 1, 0, 0, 0, 0},
+    [0xcb] = {0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0},
+    [0xcc] = {1, 0, 1, 1, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0},
+    [0xd1] = {1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    [0xdb] = {0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0},
+    [0xdc] = {1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
 }
 
 function loadDungeonChests()
@@ -234,6 +138,25 @@ function loadDynamicRequirement()
     DynamicRequirement("tr", "tr", 2, 1889, 196)
     DynamicRequirement("gt", "tohgt", 1, 1056, 115)
     DynamicRequirement("gt", "tohgt", 2, 1141, 115)
+end
+
+function loadDoorSlots()
+    for g = 1, #RoomGroupSelection.Groups do
+        RoomGroupSelection(g)
+    end
+    for r = 1, 9 do
+        RoomSelectSlot(r)
+    end
+    for r = 1, #ROOMSLOTS do
+        for d = 1, 16 do
+            DoorSlot(r, d)
+        end
+    end
+    for t = 1, #DoorSlot.Icons do
+        if DoorSlotSelection.Types[t] then
+            DoorSlotSelection(t)
+        end
+    end
 end
 
 function initGlobalVars()
@@ -458,5 +381,33 @@ function removeGhost(section)
         hiddenTarget.Owner:RemoveBadge(CaptureBadgeCache[target.Owner])
         CaptureBadgeCache[target.Owner] = nil
         CaptureBadgeCache[target] = nil
+    end
+end
+
+function updateDoorSlots(roomId)
+    if roomId > 0 and DOORSLOTS[roomId] and ROOMSLOTS[1] ~= roomId then
+        local carried = ROOMSLOTS[1]
+        ROOMSLOTS[1] = roomId
+        for r = 2, #ROOMSLOTS do
+            if ROOMSLOTS[r] == roomId then
+                ROOMSLOTS[r] = carried
+                break
+            end
+            local temp = ROOMSLOTS[r]
+            ROOMSLOTS[r] = carried
+            carried = temp
+        end
+        
+        for r = 1, #ROOMSLOTS do
+            if ROOMSLOTS[r] > 0 then
+                local item = Tracker:FindObjectForCode("roomSlot" .. math.floor(r))
+                item.Icon = ImageReference:FromPackRelativePath("images/rooms/" .. string.format("%02x", ROOMSLOTS[r]) .. ".png")
+
+                for d = 1, #DOORSLOTS[ROOMSLOTS[r]] do
+                    item = Tracker:FindObjectForCode("doorSlot" .. math.floor(r) .. "_" .. math.floor(d)).ItemState
+                    item:setState(DOORSLOTS[ROOMSLOTS[r]][d])
+                end
+            end
+        end
     end
 end
