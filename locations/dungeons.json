@@ -52,8 +52,6 @@
                 "visibility_rules": [ "entrance_shuffle_off,$hasNotSeenMireMedallion" ],
                 "chest_unopened_img": "images/door_closed.png",
                 "chest_opened_img": "images/door_open.png",
-                "capture_item": true,
-                "capture_item_layout": "tracker_capture_medallion",
                 "item_count": 1
             },
             {
@@ -245,7 +243,7 @@
         "parent": "Semi-Dungeon Color",
         "access_rules": [
             "world_state_open,$canClearAgaTowerBarrier",
-            "world_state_open,glitch_mode_ow,boots",
+            "world_state_open,glitch_mode_ow,boots,[$canClearAgaTowerBarrier]",
             "world_state_open,glitch_mode_major",
             "world_state_inverted,@Dark Death Mountain West",
             "entrance_shuffle_on"
@@ -370,7 +368,7 @@
             "door_shuffle_off,glitch_mode_hybrid,[flippers],[@Mountain Access],[lamp],@Misery Mire/Left Side Access,[mm_bigkey]",
             "door_shuffle_off,glitch_mode_hybrid,[flippers],[@Mountain Access],[lamp],@Misery Mire/Left Side Access,[toh_bigkey]",
             "door_shuffle_off,glitch_mode_hybrid,[flippers],[@Mountain Access],[lamp],[@Misery Mire/Left Side Access],@Tower of Hera/Compass Chest,[toh_bigkey]",
-            "door_shuffle_on",
+            "entrance_shuffle_off,door_shuffle_on,@South Dark World",
             "entrance_shuffle_on,dam"
         ]
     },
@@ -1782,8 +1780,6 @@
                 "visibility_rules": [ "entrance_shuffle_off,$hasNotSeenTurtleMedallion" ],
                 "chest_unopened_img": "images/door_closed.png",
                 "chest_opened_img": "images/door_open.png",
-                "capture_item": true,
-                "capture_item_layout": "tracker_capture_medallion",
                 "item_count": 1
             },
             {
@@ -1844,7 +1840,9 @@
             {
                 "name": "Chain Chomp Pokey",
                 "access_rules": [
-                    "@Turtle Rock/Dungeon Access,tr_smallkey:1",
+                    "@Turtle Rock/Dungeon Access,pool_mode_chest,tr_smallkey:1",
+                    "@Turtle Rock/Dungeon Access,pool_mode_chestkeydrop,world_state_open,entrance_shuffle_off,tr_smallkey:1",
+                    "@Turtle Rock/Dungeon Access,pool_mode_chestkeydrop,tr_smallkey:1,[tr_smallkey:2]",
                     "@Turtle Rock/Dungeon Access,keysanity_smallkey_off",
                     "@TR Bridge Entrances,tr_smallkey:1,[tr_smallkey:5]",
                     "@TR Bridge Entrances,keysanity_smallkey_off",
@@ -1862,7 +1860,8 @@
                 "name": "Chain Chomp",
                 "access_rules": [
                     "@Turtle Rock/Dungeon Access,pool_mode_chest,tr_smallkey:1",
-                    "@Turtle Rock/Dungeon Access,pool_mode_chestkeydrop,tr_smallkey:2",
+                    "@Turtle Rock/Dungeon Access,pool_mode_chestkeydrop,world_state_open,entrance_shuffle_off,tr_smallkey:2",
+                    "@Turtle Rock/Dungeon Access,pool_mode_chestkeydrop,tr_smallkey:2,[tr_smallkey:3]",
                     "@Turtle Rock/Dungeon Access,keysanity_smallkey_off",
                     "@TR Bridge Entrances",
                     "@TR Laser Entrance,somaria,[lamp]",
@@ -1874,7 +1873,8 @@
             {
                 "name": "Lava Pokey",
                 "access_rules": [
-                    "@Turtle Rock/Dungeon Access,tr_smallkey:3,[tr_smallkey:5]",
+                    "@Turtle Rock/Dungeon Access,world_state_open,entrance_shuffle_off,tr_smallkey:3",
+                    "@Turtle Rock/Dungeon Access,tr_smallkey:3,[tr_smallkey:4]",
                     "@Turtle Rock/Dungeon Access,keysanity_smallkey_off",
                     "@TR Bridge Entrances",
                     "@TR Laser Entrance,somaria,[lamp]",
@@ -1907,7 +1907,8 @@
                 "name": "Big Chest Room",
                 "access_rules": [
                     "@Turtle Rock/Dungeon Access,pool_mode_chest,tr_smallkey:2",
-                    "@Turtle Rock/Dungeon Access,pool_mode_chestkeydrop,tr_smallkey:3",
+                    "@Turtle Rock/Dungeon Access,pool_mode_chestkeydrop,world_state_open,entrance_shuffle_off,tr_smallkey:3",
+                    "@Turtle Rock/Dungeon Access,pool_mode_chestkeydrop,tr_smallkey:3,[tr_smallkey:4]",
                     "@Turtle Rock/Dungeon Access,keysanity_smallkey_off",
                     "@TR Bridge Entrances",
                     "door_shuffle_basic,@Turtle Rock/Dungeon Access",
@@ -1939,8 +1940,10 @@
                 "access_rules": [
                     "@Turtle Rock/Dungeon Access,pool_mode_chest,tr_smallkey:2,tr_bigkey",
                     "@Turtle Rock/Dungeon Access,pool_mode_chest,tr_smallkey:2,keysanity_bigkey_off",
-                    "@Turtle Rock/Dungeon Access,pool_mode_chestkeydrop,tr_smallkey:3,tr_bigkey",
-                    "@Turtle Rock/Dungeon Access,pool_mode_chestkeydrop,tr_smallkey:3,keysanity_bigkey_off",
+                    "@Turtle Rock/Dungeon Access,pool_mode_chestkeydrop,world_state_open,entrance_shuffle_off,tr_smallkey:3,tr_bigkey",
+                    "@Turtle Rock/Dungeon Access,pool_mode_chestkeydrop,tr_smallkey:3,[tr_smallkey:4],tr_bigkey",
+                    "@Turtle Rock/Dungeon Access,pool_mode_chestkeydrop,world_state_open,entrance_shuffle_off,tr_smallkey:3,keysanity_bigkey_off",
+                    "@Turtle Rock/Dungeon Access,pool_mode_chestkeydrop,tr_smallkey:3,[tr_smallkey:4],keysanity_bigkey_off",
                     "@Turtle Rock/Dungeon Access,keysanity_smallkey_off,tr_bigkey",
                     "@Turtle Rock/Dungeon Access,keysanity_smallkey_off,keysanity_bigkey_off",
                     "@TR Bridge Entrances,tr_bigkey",
