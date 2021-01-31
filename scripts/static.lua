@@ -1,3 +1,75 @@
+DungeonList = { "hc", "ep", "dp", "at", "sp", "pod", "mm", "sw", "ip", "toh", "tt", "tr", "gt" }
+
+DungeonData = { --dungeonPrefix = location header, chest keys, key drops, dungeon order index
+    ["hc"] = { "@Hyrule Castle & Escape", 1, 3, 0 },
+    ["ep"] = { "@Eastern Palace", 0, 2, 1 },
+    ["dp"] = { "@Desert Palace", 1, 3, 2 },
+    ["at"] = { "@Agahnim's Tower", 2, 2, 4 },
+    ["sp"] = { "@Swamp Palace", 1, 5, 6 },
+    ["pod"] = { "@Palace of Darkness", 6, 0, 5 },
+    ["mm"] = { "@Misery Mire", 3, 3, 10 },
+    ["sw"] = { "@Skull Woods", 3, 2, 7 },
+    ["ip"] = { "@Ice Palace", 2, 4, 9 },
+    ["toh"] = { "@Tower of Hera", 1, 0, 3 },
+    ["tt"] = { "@Thieves Town", 1, 2, 8 },
+    ["tr"] = { "@Turtle Rock", 4, 2, 11 },
+    ["gt"] = { "@Ganon's Tower", 4, 4, 12 }
+}
+
+DungeonIdMap = {
+    [0] = "hc", --sewer
+    [2] = "hc",
+    [4] = "ep",
+    [6] = "dp",
+    [8] = "at",
+    [10] = "sp",
+    [12] = "pod",
+    [14] = "mm",
+    [16] = "sw",
+    [18] = "ip",
+    [20] = "toh",
+    [22] = "tt",
+    [24] = "tr",
+    [26] = "gt",
+    [255] = "OW"
+}
+
+OverworldIdRegionMap = {
+    [0x02] = "light_world", [0x03] = "dm_west_bottom",
+    [0x11] = "light_world", [0x13] = "light_world", [0x15] = "light_world", [0x16] = "lw_witch",
+    [0x22] = "light_world", [0x1e] = "light_world",
+    [0x28] = "light_world", [0x29] = "light_world", [0x2b] = "light_world", [0x2c] = "light_world",
+    [0x32] = "light_world", [0x34] = "light_world", [0x37] = "light_world",
+    [0x3a] = "light_world", [0x3b] = "light_world",
+    [0x42] = "dw_west", [0x43] = "ddm_west", [0x47] = "ddm_top",
+    [0x51] = "dw_west", [0x53] = "dw_west", [0x56] = "dw_witch",
+    [0x5a] = "dw_west", [0x5b] = "dw_east", [0x5e] = "dw_east",
+    [0x69] = "dw_south", [0x6b] = "dw_south", [0x6c] = "dw_south",
+    [0x70] = "mire_area", [0x74] = "dw_south", [0x77] = "dw_southeast",
+    [0x7b] = "dw_south"
+}
+
+RoomNonLinearExclusions = {
+    [0x09] = {{ 0x1228, 0x12c8, 0x0, 0xc0 }},
+    [0x14] = {
+        { 0x7f0, 0xa00, 0x370, 0x380 },
+        { 0x870, 0x880, 0x1e8, 0x248 },
+        { 0x970, 0x980, 0x3a8, 0x418 }
+    },
+    [0x1a] = {{ 0x13f0, 0x1448, 0x2f0, 0x318 }},
+    [0x2a] = {{ 0x15b8, 0x1600, 0x570, 0x580 }},
+    [0x7d] = {{ 0x1b28, 0x1bc8, 0xf30, 0x1010 }},
+    [0x8c] = {{ 0x1928, 0x19c8, 0x1130, 0x1218 }},
+    [0x35] = {{ 0x9f0, 0xac0, 0x660, 0x690 }},
+    [0x36] = {{ 0xdb0, 0xe00, 0x630, 0x688 }},
+    [0x37] = {{ 0xf30, 0x1000, 0x660, 0x690 }},
+    [0x74] = {{ 0x8a8, 0x948, 0xfa0, 0x1008 }},
+    [0xa2] = {{ 0x3f0, 0x600, 0x14f0, 0x1500 }},
+    [0xbc] = {{ 0x1868, 0x1888, 0x17a8, 0x1820 }},
+    [0xd1] = {{ 0x328, 0x3c8, 0x19f0, 0x1bc0 }},
+    [0xdb] = {{ 0x1770, 0x1800, 0x1b30, 0x1b80 }}
+}
+
 CaptureBadgeEntrances = {
     "@Forest Chest Game/Entrance",
     "@Lumberjack House/Entrance",
@@ -11,7 +83,7 @@ CaptureBadgeEntrances = {
     "@Sick Kid Entrance/Entrance",
     "@Grass House/Entrance",
     "@Bomb Hut/Entrance",
-    "@Kakariko Shop/Entrance",
+    "@Kakariko Shop Entrance/Entrance",
     "@Tavern Entrance/Entrance",
     "@Smith's House/Entrance",
     "@Quarreling Brothers Left/Entrance",
@@ -46,7 +118,7 @@ CaptureBadgeEntrances = {
     "@Hype Fairy Cave/Entrance",
     "@Lake Fortune Teller/Entrance",
     "@Mini Moldorm Cave Entrance/Entrance",
-    "@Lake Shop/Entrance",
+    "@Lake Shop Entrance/Entrance",
     "@Upgrade Fairy/Entrance",
     "@Ice Rod Cave Entrance/Entrance",
     "@Cold Bee Cave/Entrance",
@@ -73,7 +145,7 @@ CaptureBadgeEntrances = {
     "@Skull Woods Back/Entrance",
     "@Dark Lumberjack/Entrance",
     "@Dark Chapel/Entrance",
-    "@Shield Shop/Entrance",
+    "@Shield Shop Entrance/Entrance",
     "@Village of Outkasts Fortune Teller/Entrance",
     "@Chest Game Entrance/Entrance",
     "@Thieves Town Entrance/Entrance",
@@ -83,7 +155,7 @@ CaptureBadgeEntrances = {
     "@Hammer Pegs Cave/Entrance",
     "@Archery Game/Entrance",
     "@Pyramid Fairy Cave/Entrance",
-    "@Dark Witch's Hut/Entrance",
+    "@Dark Witch's Hut Entrance/Entrance",
     "@Dark Sahasrahla/Entrance",
     "@Palace of Darkness Entrance/Entrance",
     "@Dark Trees Fairy/Entrance",
@@ -96,7 +168,7 @@ CaptureBadgeEntrances = {
     "@Dark Bonk Rocks/Entrance",
     "@Bomb Shop/Entrance",
     "@Hype Cave Entrance/Entrance",
-    "@Dark Lake Shop/Entrance",
+    "@Dark Lake Shop Entrance/Entrance",
     "@Ice Palace Entrance/Entrance",
     "@Dark Lake Hylia Fairy/Entrance",
     "@Hamburger Helper Cave/Entrance",
@@ -113,7 +185,7 @@ CaptureBadgeEntrances = {
     "@Turtle Ledge Right Entrance/Entrance",
     "@Turtle Laser Bridge Entrance/Entrance",
     "@Superbunny Cave Bottom/Entrance",
-    "@Dark Death Mountain Shop/Entrance",
+    "@Dark Death Mountain Shop Entrance/Entrance",
     "@Turtle Rock Entrance/Entrance"
 }
 
@@ -165,58 +237,16 @@ CaptureBadgeOverworld = {
 CaptureBadgeUnderworld = {
     "@Forest Hideout/Stash",
     "@Lumberjack Cave/Cave",
+    "@Kakariko Shop/Items",
     "@Library/On The Shelf",
-    "@Cave 45/Circle of Bushes"
+    "@Cave 45/Circle of Bushes",
+    "@Potion Shop/Items",
+    "@Lake Shop/Items",
+    "@Paradox Cave Shop/Items",
+    "@Dark Lumberjack Shop/Items",
+    "@Shield Shop/Items",
+    "@Village of Outcasts Shop/Items",
+    "@Dark Witch's Hut/Items",
+    "@Dark Lake Shop/Items",
+    "@Dark Death Mountain Shop/Items"
 }
-
-DungeonList = { "hc", "ep", "dp", "at", "sp", "pod", "mm", "sw", "ip", "toh", "tt", "tr", "gt" }
-
-DungeonData = { --dungeonPrefix = location header, chest keys, key drops, dungeon order index
-    ["hc"] = { "@Hyrule Castle & Escape", 1, 3, 0 },
-    ["ep"] = { "@Eastern Palace", 0, 2, 1 },
-    ["dp"] = { "@Desert Palace", 1, 3, 2 },
-    ["at"] = { "@Agahnim's Tower", 2, 2, 4 },
-    ["sp"] = { "@Swamp Palace", 1, 5, 6 },
-    ["pod"] = { "@Palace of Darkness", 6, 0, 5 },
-    ["mm"] = { "@Misery Mire", 3, 3, 10 },
-    ["sw"] = { "@Skull Woods", 3, 2, 7 },
-    ["ip"] = { "@Ice Palace", 2, 4, 9 },
-    ["toh"] = { "@Tower of Hera", 1, 0, 3 },
-    ["tt"] = { "@Thieves Town", 1, 2, 8 },
-    ["tr"] = { "@Turtle Rock", 4, 2, 11 },
-    ["gt"] = { "@Ganon's Tower", 4, 4, 12 }
-}
-
-DungeonIdMap = {
-    [0] = "hc", --sewer
-    [2] = "hc",
-    [4] = "ep",
-    [6] = "dp",
-    [8] = "at",
-    [10] = "sp",
-    [12] = "pod",
-    [14] = "mm",
-    [16] = "sw",
-    [18] = "ip",
-    [20] = "toh",
-    [22] = "tt",
-    [24] = "tr",
-    [26] = "gt",
-    [255] = "OW"
-}
-
-OverworldIdRegionMap = {
-    [0x02] = "light_world", [0x03] = "dm_west_bottom",
-    [0x11] = "light_world", [0x13] = "light_world", [0x15] = "light_world", [0x16] = "lw_witch",
-    [0x22] = "light_world", [0x1e] = "light_world",
-    [0x28] = "light_world", [0x29] = "light_world", [0x2b] = "light_world", [0x2c] = "light_world",
-    [0x32] = "light_world", [0x34] = "light_world", [0x37] = "light_world",
-    [0x3a] = "light_world", [0x3b] = "light_world",
-    [0x42] = "dw_west", [0x43] = "ddm_west", [0x47] = "ddm_top",
-    [0x51] = "dw_west", [0x53] = "dw_west", [0x56] = "dw_witch",
-    [0x5a] = "dw_west", [0x5b] = "dw_east", [0x5e] = "dw_east",
-    [0x69] = "dw_south", [0x6b] = "dw_south", [0x6c] = "dw_south",
-    [0x70] = "mire_area", [0x74] = "dw_south", [0x77] = "dw_southeast",
-    [0x7b] = "dw_south"
-}
-                

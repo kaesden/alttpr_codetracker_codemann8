@@ -92,7 +92,7 @@ else
     DoorTotalChest("Chests", "chest", "item", "images/0058.png")
     DoorTotalChest("Keys", "key", "smallkey", "images/SmallKey2.png")
 
-    WorldStateMode(true):linkSurrogate(WorldStateMode(false))
+    WorldStateMode(false):linkSurrogate(WorldStateMode(true))
     KeysanityMode(false, "Map"):linkSurrogate(KeysanityMode(true, "Map"))
     KeysanityMode(false, "Compass"):linkSurrogate(KeysanityMode(true, "Compass"))
     KeysanityMode(false, "Small Key"):linkSurrogate(KeysanityMode(true, "Small Key"))
@@ -100,7 +100,9 @@ else
     EntranceShuffleMode(false):linkSurrogate(EntranceShuffleMode(true))
     DoorShuffleMode(false):linkSurrogate(DoorShuffleMode(true))
     RetroMode(false):linkSurrogate(RetroMode(true))
-    PoolMode(false):linkSurrogate(PoolMode(true))
+    PoolMode(0, "Shopsanity"):linkSurrogate(PoolMode(1, "Shopsanity"))
+    OBJ_POOL_KEYDROP = PoolMode(0, "Key Drop")
+    OBJ_POOL_KEYDROP:linkSurrogate(PoolMode(1, "Key Drop"):linkSurrogate(PoolMode(2, "Key Drop"):linkSurrogate(OBJ_POOL_KEYDROP, true), true), true)
     GlitchMode(false):linkSurrogate(GlitchMode(true))
     RaceMode(false):linkSurrogate(RaceMode(true))
 

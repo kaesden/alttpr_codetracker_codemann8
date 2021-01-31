@@ -171,7 +171,7 @@ function updatePseudoProgressiveItemFromByteAndFlag(segment, code, address, flag
     end
 end
 
-function updateSectionChestCountFromByteAndFlag(segment, locationRef, address, flag, callback)
+function updateSectionChestCountFromBytesAndFlag(segment, locationRef, addresses, flag, callback)
     local location = Tracker:FindObjectForCode(locationRef)
     if location then
         -- Do not auto-track this the user has manually modified it
@@ -179,23 +179,22 @@ function updateSectionChestCountFromByteAndFlag(segment, locationRef, address, f
             return
         end
 
-        local value = ReadU8(segment, address)
+        local count = 0
+        for i, address in ipairs(addresses) do
+            local value = ReadU8(segment, address)
+            if (value & flag) ~= 0 then
+                count = count + 1
+            end
+        end
 
         if AUTOTRACKER_ENABLE_DEBUG_LOGGING then
             print(locationRef, value)
         end
 
-        if (value & flag) ~= 0 then
-            location.AvailableChestCount = 0
-            if callback then
-                callback(true)
-            end
-        else
-            location.AvailableChestCount = location.AvailableChestCount
+        location.AvailableChestCount = location.ChestCount - count
 
-            if callback then
-                callback(false)
-            end
+        if callback then
+            callback(location.AvailableChestCount == 0)
         end
     elseif AUTOTRACKER_ENABLE_DEBUG_LOGGING then
         print("Couldn't find location", locationRef)
@@ -203,7 +202,7 @@ function updateSectionChestCountFromByteAndFlag(segment, locationRef, address, f
 end
 
 function updateSectionChestCountFromOverworldIndexAndFlag(segment, locationRef, index, callback)
-    updateSectionChestCountFromByteAndFlag(segment, locationRef, 0x7ef280 + index, 0x40, callback)
+    updateSectionChestCountFromBytesAndFlag(segment, locationRef, {0x7ef280 + index}, 0x40, callback)
 end
 
 function updateSectionChestCountFromRoomSlotList(segment, locationRefs, roomSlots, altLocationRef, callback)
@@ -352,7 +351,7 @@ function updateDungeonKeysFromPrefix(segment, dungeonPrefix, address)
         end
 
         local potKeys = Tracker:FindObjectForCode(dungeonPrefix .. "_potkey")
-        if potKeys and OBJ_POOL.CurrentStage == 0 then
+        if potKeys and OBJ_POOL_KEYDROP.CurrentStage == 0 then
             local offsetKey = 0
             if dungeonPrefix == "hc" and Tracker:FindObjectForCode("hc_bigkey").Active then
                 offsetKey = 1
@@ -424,7 +423,7 @@ function updateChestCountFromDungeon(segment, dungeonPrefix, address)
                 print(dungeonPrefix .. " Chests", chest.MaxCount - chest.AcquiredCount)
             end
 
-            if potkey and OBJ_POOL.CurrentStage > 0 then
+            if potkey and OBJ_POOL_KEYDROP.CurrentStage > 0 then
                 local addedKeys = potkey.AcquiredCount
                 if OBJ_KEYSANITY_BIG.CurrentStage == 0 and dungeonPrefix == "hc" and bigkey.Active then
                     addedKeys = addedKeys - 1

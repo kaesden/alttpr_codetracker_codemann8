@@ -150,15 +150,15 @@ function updateRoomIdFromMemorySegment(segment)
 
     OBJ_ROOM.AcquiredCount = ReadU16(segment, 0x7e00a0)
 
-    if OBJ_DOORSHUFFLE and OBJ_DOORSHUFFLE.CurrentStage == 2 and not AUTOTRACKER_HAS_DONE_POST_GAME_SUMMARY then
+    if OBJ_DOORSHUFFLE and OBJ_DOORSHUFFLE.CurrentStage > 0 and not AUTOTRACKER_HAS_DONE_POST_GAME_SUMMARY then
         updateDoorSlots(OBJ_ROOM.AcquiredCount)
     end
 
     if AUTOTRACKER_ENABLE_DEBUG_LOGGING then
         local roomMap =
         {
-                        [0x01] = 2,  [0x02] = 0,               [0x04] = 24,              [0x06] = 10, [0x07] = 20,              [0x09] = 12, [0x0a] = 12, [0x0b] = 12, [0x0c] = 26, [0x0d] = 26, [0x0e] = 18,
-                        [0x11] = 0,  [0x12] = 0,  [0x13] = 24, [0x14] = 24, [0x15] = 24, [0x16] = 10, [0x17] = 20,              [0x19] = 12, [0x1a] = 12, [0x1b] = 12, [0x1c] = 26, [0x1d] = 26, [0x1e] = 18, [0x1f] = 18,
+                         [0x01] = 2,  [0x02] = 0,               [0x04] = 24,              [0x06] = 10, [0x07] = 20,              [0x09] = 12, [0x0a] = 12, [0x0b] = 12, [0x0c] = 26, [0x0d] = 26, [0x0e] = 18,
+                         [0x11] = 0,  [0x12] = 0,  [0x13] = 24, [0x14] = 24, [0x15] = 24, [0x16] = 10, [0x17] = 20,              [0x19] = 12, [0x1a] = 12, [0x1b] = 12, [0x1c] = 26, [0x1d] = 26, [0x1e] = 18, [0x1f] = 18,
             [0x20] = 8,  [0x21] = 0,  [0x22] = 0,  [0x23] = 24, [0x24] = 24,              [0x26] = 10, [0x27] = 20, [0x28] = 10, [0x29] = 16, [0x2a] = 12, [0x2b] = 12,                           [0x2e] = 18,
             [0x30] = 8,  [0x31] = 20, [0x32] = 0,  [0x33] = 6,  [0x34] = 10, [0x35] = 10, [0x36] = 10, [0x37] = 10, [0x38] = 10, [0x39] = 16, [0x3a] = 12, [0x3b] = 12,              [0x3d] = 26, [0x3e] = 18, [0x3f] = 18,
             [0x40] = 8,  [0x41] = 0,  [0x42] = 0,  [0x43] = 6,  [0x44] = 22, [0x45] = 22, [0x46] = 10,                           [0x49] = 16, [0x4a] = 12, [0x4b] = 12, [0x4c] = 26, [0x4d] = 26, [0x4e] = 18, [0x4f] = 18,
@@ -240,10 +240,10 @@ function updateItemsFromMemorySegment(segment)
 
     --    It may seem unintuitive, but these locations are controlled by flags stored adjacent to the item data,
     --    which makes it more efficient to update them here.
-    updateSectionChestCountFromByteAndFlag(segment, "@Secret Passage/Uncle", 0x7ef3c6, 0x01)
-    updateSectionChestCountFromByteAndFlag(segment, "@Hobo/Under The Bridge", 0x7ef3c9, 0x01)
-    updateSectionChestCountFromByteAndFlag(segment, "@Bottle Vendor/This Jerk", 0x7ef3c9, 0x02)
-    updateSectionChestCountFromByteAndFlag(segment, "@Purple Chest/Middle-Aged Man", 0x7ef3c9, 0x10)
+    updateSectionChestCountFromBytesAndFlag(segment, "@Secret Passage/Uncle", {0x7ef3c6}, 0x01)
+    updateSectionChestCountFromBytesAndFlag(segment, "@Hobo/Under The Bridge", {0x7ef3c9}, 0x01)
+    updateSectionChestCountFromBytesAndFlag(segment, "@Bottle Vendor/This Jerk", {0x7ef3c9}, 0x02)
+    updateSectionChestCountFromBytesAndFlag(segment, "@Purple Chest/Middle-Aged Man", {0x7ef3c9}, 0x10)
 end
 
 function updateOverworldEventsFromMemorySegment(segment)
@@ -275,6 +275,19 @@ function updateOverworldEventsFromMemorySegment(segment)
     updateDam(segment)
 end
 
+function updateShopsFromMemorySegment(segment)
+    updateSectionChestCountFromBytesAndFlag(segment, "@Dark Death Mountain Shop/Items", { 0x7ef302, 0x7ef303, 0x7ef304 }, 0xff)
+    updateSectionChestCountFromBytesAndFlag(segment, "@Shield Shop/Items", { 0x7ef305, 0x7ef306, 0x7ef307 }, 0xff)
+    updateSectionChestCountFromBytesAndFlag(segment, "@Dark Lake Shop/Items", { 0x7ef308, 0x7ef309, 0x7ef30a }, 0xff)
+    updateSectionChestCountFromBytesAndFlag(segment, "@Dark Lumberjack Shop/Items", { 0x7ef30b, 0x7ef30c, 0x7ef30d }, 0xff)
+    updateSectionChestCountFromBytesAndFlag(segment, "@Village of Outcasts Shop/Items", { 0x7ef30e, 0x7ef30f, 0x7ef310 }, 0xff)
+    updateSectionChestCountFromBytesAndFlag(segment, "@Dark Witch's Hut/Items", { 0x7ef311, 0x7ef312, 0x7ef313 }, 0xff)
+    updateSectionChestCountFromBytesAndFlag(segment, "@Paradox Cave Shop/Items", { 0x7ef314, 0x7ef315, 0x7ef316 }, 0xff)
+    updateSectionChestCountFromBytesAndFlag(segment, "@Kakariko Shop/Items", { 0x7ef317, 0x7ef318, 0x7ef319 }, 0xff)
+    updateSectionChestCountFromBytesAndFlag(segment, "@Lake Shop/Items", { 0x7ef31a, 0x7ef31b, 0x7ef31c }, 0xff)
+    updateSectionChestCountFromBytesAndFlag(segment, "@Potion Shop/Items", { 0x7ef31d, 0x7ef31e, 0x7ef31f }, 0xff)
+end
+
 function updateNPCItemFlagsFromMemorySegment(segment)
     if not isInGame() then
         return false
@@ -286,23 +299,23 @@ function updateNPCItemFlagsFromMemorySegment(segment)
 
     InvalidateReadCaches()
 
-    updateSectionChestCountFromByteAndFlag(segment, "@Old Man/Bring Him Home",          0x7ef410, 0x01)
-    updateSectionChestCountFromByteAndFlag(segment, "@Zora's Domain/King Zora",         0x7ef410, 0x02)
-    updateSectionChestCountFromByteAndFlag(segment, "@Sick Kid/By The Bed",             0x7ef410, 0x04)
-    updateSectionChestCountFromByteAndFlag(segment, "@Stumpy/Farewell",                 0x7ef410, 0x08)
-    updateSectionChestCountFromByteAndFlag(segment, "@Sahasrala's Hut/Sahasrala",       0x7ef410, 0x10)
-    updateSectionChestCountFromByteAndFlag(segment, "@Catfish/Ring of Stones",          0x7ef410, 0x20)
+    updateSectionChestCountFromBytesAndFlag(segment, "@Old Man/Bring Him Home",          {0x7ef410}, 0x01)
+    updateSectionChestCountFromBytesAndFlag(segment, "@Zora's Domain/King Zora",         {0x7ef410}, 0x02)
+    updateSectionChestCountFromBytesAndFlag(segment, "@Sick Kid/By The Bed",             {0x7ef410}, 0x04)
+    updateSectionChestCountFromBytesAndFlag(segment, "@Stumpy/Farewell",                 {0x7ef410}, 0x08)
+    updateSectionChestCountFromBytesAndFlag(segment, "@Sahasrala's Hut/Sahasrala",       {0x7ef410}, 0x10)
+    updateSectionChestCountFromBytesAndFlag(segment, "@Catfish/Ring of Stones",          {0x7ef410}, 0x20)
     -- 0x40 is unused
-    updateSectionChestCountFromByteAndFlag(segment, "@Library/On The Shelf",            0x7ef410, 0x80)
+    updateSectionChestCountFromBytesAndFlag(segment, "@Library/On The Shelf",            {0x7ef410}, 0x80)
 
-    updateSectionChestCountFromByteAndFlag(segment, "@Ether Tablet/Tablet",             0x7ef411, 0x01)
-    updateSectionChestCountFromByteAndFlag(segment, "@Bombos Tablet/Tablet",            0x7ef411, 0x02)
-    updateSectionChestCountFromByteAndFlag(segment, "@Dwarven Smiths/Bring Him Home",   0x7ef411, 0x04)
+    updateSectionChestCountFromBytesAndFlag(segment, "@Ether Tablet/Tablet",             {0x7ef411}, 0x01)
+    updateSectionChestCountFromBytesAndFlag(segment, "@Bombos Tablet/Tablet",            {0x7ef411}, 0x02)
+    updateSectionChestCountFromBytesAndFlag(segment, "@Dwarven Smiths/Bring Him Home",   {0x7ef411}, 0x04)
     -- 0x08 is no longer relevant
-    updateSectionChestCountFromByteAndFlag(segment, "@Mushroom Spot/Shroom",            0x7ef411, 0x10)
-    updateSectionChestCountFromByteAndFlag(segment, "@Potion Shop/Assistant",           0x7ef411, 0x20)
+    updateSectionChestCountFromBytesAndFlag(segment, "@Mushroom Spot/Shroom",            {0x7ef411}, 0x10)
+    updateSectionChestCountFromBytesAndFlag(segment, "@Potion Shop/Assistant",           {0x7ef411}, 0x20)
     -- 0x40 is unused
-    updateSectionChestCountFromByteAndFlag(segment, "@Magic Bat/Magic Bowl",            0x7ef411, 0x80, updateBatIndicatorStatus)
+    updateSectionChestCountFromBytesAndFlag(segment, "@Magic Bat/Magic Bowl",            {0x7ef411}, 0x80, updateBatIndicatorStatus)
 end
 
 function updateRoomsFromMemorySegment(segment)
@@ -314,21 +327,23 @@ function updateRoomsFromMemorySegment(segment)
 
     --Dungeon Data
     if not AUTOTRACKER_DISABLE_ITEM_TRACKING then
-        if Tracker.ActiveVariantUID ~= "items_only" and OBJ_DOORSHUFFLE.CurrentStage == 0 then
-            --Doors Opened
-            updateDoorKeyCountFromRoomSlotList(segment, "hc_door", {{114, 15}, {113, 15}, {50, 15, 34, 15}, {17, 13, 33, 15}})
-            updateDoorKeyCountFromRoomSlotList(segment, "ep_door", {{186, 15, 185, 15}, {153, 15}})
-            updateDoorKeyCountFromRoomSlotList(segment, "dp_door", {{133, 14}, {99, 15}, {83, 13, 67, 13}, {67, 14}})
-            updateDoorKeyCountFromRoomSlotList(segment, "toh_door", {{119, 15}})
-            updateDoorKeyCountFromRoomSlotList(segment, "at_door", {{224, 13}, {208, 15}, {192, 13}, {176, 13}})
-            updateDoorKeyCountFromRoomSlotList(segment, "pod_door", {{74, 13, 58, 15}, {10, 15}, {42, 14, 26, 12}, {26, 14, 25, 14}, {26, 15}, {11, 13}})
-            updateDoorKeyCountFromRoomSlotList(segment, "sp_door", {{40, 15}, {56, 14, 55, 12}, {55, 13}, {54, 13, 53, 15}, {54, 14, 38, 15}, {22, 14}})
-            updateDoorKeyCountFromRoomSlotList(segment, "sw_door", {{87, 13, 88, 14}, {104, 14, 88, 13}, {86, 15}, {89, 15, 73, 13}, {57, 14}})
-            updateDoorKeyCountFromRoomSlotList(segment, "tt_door", {{188, 15}, {171, 15}, {68, 14}})
-            updateDoorKeyCountFromRoomSlotList(segment, "ip_door", {{14, 15}, {62, 14, 78, 14}, {94, 15, 95, 15}, {126, 15, 142, 15}, {158, 15}, {190, 14, 191, 15}})
-            updateDoorKeyCountFromRoomSlotList(segment, "mm_door", {{179, 15}, {194, 14, 193, 14}, {193, 15}, {194, 15, 195, 15}, {161, 15, 177, 14}, {147, 14}})
-            updateDoorKeyCountFromRoomSlotList(segment, "tr_door", {{198, 15, 182, 13}, {182, 12}, {182, 15}, {19, 15, 20, 14}, {4, 15}, {197, 15, 196, 15}})
-            updateDoorKeyCountFromRoomSlotList(segment, "gt_door", {{140, 13}, {139, 14}, {155, 15}, {125, 13}, {141, 14}, {123, 14, 124, 13}, {61, 14}, {61, 13, 77, 15}})
+        if Tracker.ActiveVariantUID ~= "items_only" then
+            if OBJ_DOORSHUFFLE.CurrentStage == 0 then
+                --Doors Opened
+                updateDoorKeyCountFromRoomSlotList(segment, "hc_door", {{114, 15}, {113, 15}, {50, 15, 34, 15}, {17, 13, 33, 15}})
+                updateDoorKeyCountFromRoomSlotList(segment, "ep_door", {{186, 15, 185, 15}, {153, 15}})
+                updateDoorKeyCountFromRoomSlotList(segment, "dp_door", {{133, 14}, {99, 15}, {83, 13, 67, 13}, {67, 14}})
+                updateDoorKeyCountFromRoomSlotList(segment, "toh_door", {{119, 15}})
+                updateDoorKeyCountFromRoomSlotList(segment, "at_door", {{224, 13}, {208, 15}, {192, 13}, {176, 13}})
+                updateDoorKeyCountFromRoomSlotList(segment, "pod_door", {{74, 13, 58, 15}, {10, 15}, {42, 14, 26, 12}, {26, 14, 25, 14}, {26, 15}, {11, 13}})
+                updateDoorKeyCountFromRoomSlotList(segment, "sp_door", {{40, 15}, {56, 14, 55, 12}, {55, 13}, {54, 13, 53, 15}, {54, 14, 38, 15}, {22, 14}})
+                updateDoorKeyCountFromRoomSlotList(segment, "sw_door", {{87, 13, 88, 14}, {104, 14, 88, 13}, {86, 15}, {89, 15, 73, 13}, {57, 14}})
+                updateDoorKeyCountFromRoomSlotList(segment, "tt_door", {{188, 15}, {171, 15}, {68, 14}})
+                updateDoorKeyCountFromRoomSlotList(segment, "ip_door", {{14, 15}, {62, 14, 78, 14}, {94, 15, 95, 15}, {126, 15, 142, 15}, {158, 15}, {190, 14, 191, 15}})
+                updateDoorKeyCountFromRoomSlotList(segment, "mm_door", {{179, 15}, {194, 14, 193, 14}, {193, 15}, {194, 15, 195, 15}, {161, 15, 177, 14}, {147, 14}})
+                updateDoorKeyCountFromRoomSlotList(segment, "tr_door", {{198, 15, 182, 13}, {182, 12}, {182, 15}, {19, 15, 20, 14}, {4, 15}, {197, 15, 196, 15}})
+                updateDoorKeyCountFromRoomSlotList(segment, "gt_door", {{140, 13}, {139, 14}, {155, 15}, {125, 13}, {141, 14}, {123, 14, 124, 13}, {61, 14}, {61, 13, 77, 15}})
+            end
 
             --Pot and Enemy Keys
             updateDoorKeyCountFromRoomSlotList(segment, "hc_potkey", {{114, 10}, {113, 10}, {128, 10}, {33, 10}})
@@ -388,7 +403,9 @@ function updateRoomsFromMemorySegment(segment)
         updateSectionChestCountFromRoomSlotList(segment, {"@Hyrule Castle & Escape/Back", "@HC Back/Chest"}, {{17, 4}, {17, 5}, {17, 6}})
         updateSectionChestCountFromRoomSlotList(segment, {"@Hyrule Castle & Escape/Sanctuary", "@HC Sanctuary/Chest"}, {{18, 4}})
 
-        updateSectionChestCountFromRoomSlotList(segment, {"@Eastern Palace/Front"}, {{185, 4}, {170, 4}, {168, 4}})
+        updateSectionChestCountFromRoomSlotList(segment, {"@Eastern Palace/Cannonball Chest", "@EP Cannonball/Chest"}, {{185, 4}})
+        updateSectionChestCountFromRoomSlotList(segment, {"@Eastern Palace/Hook Chest", "@EP Hook/Chest"}, {{170, 4}})
+        updateSectionChestCountFromRoomSlotList(segment, {"@Eastern Palace/Stalfos Spawn", "@EP Stalfos Spawn/Chest"}, {{168, 4}})
         updateSectionChestCountFromRoomSlotList(segment, {"@Eastern Palace/Big Chest", "@EP Big Chest/Chest"}, {{169, 4}})
         updateSectionChestCountFromRoomSlotList(segment, {"@Eastern Palace/Big Key Chest", "@EP Big Key Chest/Chest"}, {{184, 4}})
         updateSectionChestCountFromRoomSlotList(segment, {"@Eastern Palace/Armos", "@EP Armos/Prize"}, {{200, 11}})
@@ -400,7 +417,8 @@ function updateRoomsFromMemorySegment(segment)
         updateSectionChestCountFromRoomSlotList(segment, {"@Desert Palace/Big Chest", "@DP Big Chest/Chest"}, {{115, 4}})
         updateSectionChestCountFromRoomSlotList(segment, {"@Desert Palace/Lanmolas", "@DP Lanmolas/Prize"}, {{51, 11}})
 
-        updateSectionChestCountFromRoomSlotList(segment, {"@Tower of Hera/Lobby\\Cage"}, {{135, 10}, {119, 4}})
+        updateSectionChestCountFromRoomSlotList(segment, {"@Tower of Hera/Lobby", "@TH Lobby/Chest"}, {{119, 4}})
+        updateSectionChestCountFromRoomSlotList(segment, {"@Tower of Hera/Cage", "@TH Cage/Item"}, {{135, 10}})
         updateSectionChestCountFromRoomSlotList(segment, {"@Tower of Hera/Basement", "@TH Basement/Chest"}, {{135, 4}})
         updateSectionChestCountFromRoomSlotList(segment, {"@Tower of Hera/Compass Chest", "@TH Compass Chest/Chest"}, {{39, 5}})
         updateSectionChestCountFromRoomSlotList(segment, {"@Tower of Hera/Big Chest", "@TH Big Chest/Chest"}, {{39, 4}})
@@ -425,17 +443,26 @@ function updateRoomsFromMemorySegment(segment)
         updateSectionChestCountFromRoomSlotList(segment, {"@Swamp Palace/Entrance Chest", "@SP Entrance/Chest"}, {{40, 4}})
         updateSectionChestCountFromRoomSlotList(segment, {"@Swamp Palace/Bomb Wall", "@SP Bomb Wall/Chest"}, {{55, 4}})
         updateSectionChestCountFromRoomSlotList(segment, {"@Swamp Palace/South Side", "@SP South Side/Chest"}, {{70, 4}})
-        updateSectionChestCountFromRoomSlotList(segment, {"@Swamp Palace/Left Side"}, {{53, 4}, {52, 4}})
+        updateSectionChestCountFromRoomSlotList(segment, {"@Swamp Palace/Far Left Chest", "@SP Far Left Chest/Chest"}, {{52, 4}})
+        updateSectionChestCountFromRoomSlotList(segment, {"@Swamp Palace/Big Key Chest", "@SP Big Key Chest/Chest"}, {{53, 4}})
         updateSectionChestCountFromRoomSlotList(segment, {"@Swamp Palace/Big Chest", "@SP Big Chest/Chest"}, {{54, 4}})
-        updateSectionChestCountFromRoomSlotList(segment, {"@Swamp Palace/Back"}, {{118, 4}, {118, 5}, {102, 4}})
+        updateSectionChestCountFromRoomSlotList(segment, {"@Swamp Palace/Flooded Treasure", "@SP Flooded Treasure/Chest"}, {{118, 4}, {118, 5}})
+        updateSectionChestCountFromRoomSlotList(segment, {"@Swamp Palace/Snake Waterfall", "@SP Snake Waterfall/Chest"}, {{102, 4}})
         updateSectionChestCountFromRoomSlotList(segment, {"@Swamp Palace/Arrghus", "@SP Arrghus/Prize"}, {{6, 11}})
 
-        updateSectionChestCountFromRoomSlotList(segment, {"@Skull Woods/Front"}, {{103, 4}, {104, 4}, {87, 4}, {87, 5}, {88, 5}})
+        updateSectionChestCountFromRoomSlotList(segment, {"@Skull Woods/Map Chest", "@SW Map Chest/Chest"}, {{88, 5}})
+        updateSectionChestCountFromRoomSlotList(segment, {"@Skull Woods/Gibdo Prison", "@SW Gibdo Prison/Chest"}, {{87, 5}})
+        updateSectionChestCountFromRoomSlotList(segment, {"@Skull Woods/Compass Chest", "@SW Compass Chest/Chest"}, {{103, 4}})
+        updateSectionChestCountFromRoomSlotList(segment, {"@Skull Woods/Pinball", "@SW Pinball/Chest"}, {{104, 4}})
+        updateSectionChestCountFromRoomSlotList(segment, {"@Skull Woods/Statue Switch", "@SW Statue Switch/Chest"}, {{87, 4}})
         updateSectionChestCountFromRoomSlotList(segment, {"@Skull Woods/Big Chest", "@SW Big Chest/Chest"}, {{88, 4}})
         updateSectionChestCountFromRoomSlotList(segment, {"@Skull Woods/Bridge", "@SW Bridge/Chest"}, {{89, 4}})
         updateSectionChestCountFromRoomSlotList(segment, {"@Skull Woods/Mothula", "@SW Mothula/Prize"}, {{41, 11}})
 
-        updateSectionChestCountFromRoomSlotList(segment, {"@Thieves Town/Front"}, {{219, 4}, {219, 5}, {203, 4}, {220, 4}})
+        updateSectionChestCountFromRoomSlotList(segment, {"@Thieves Town/Main Lobby", "@TT Main Lobby/Chest"}, {{219, 4}})
+        updateSectionChestCountFromRoomSlotList(segment, {"@Thieves Town/Ambush", "@TT Ambush/Chest"}, {{203, 4}})
+        updateSectionChestCountFromRoomSlotList(segment, {"@Thieves Town/SE Lobby", "@TT SE Lobby/Chest"}, {{220, 4}})
+        updateSectionChestCountFromRoomSlotList(segment, {"@Thieves Town/Big Key Chest", "@TT Big Key Chest/Chest"}, {{219, 5}})
         updateSectionChestCountFromRoomSlotList(segment, {"@Thieves Town/Attic Chest", "@TT Attic/Chest"}, {{101, 4}})
         updateSectionChestCountFromRoomSlotList(segment, {"@Thieves Town/Prison Cell", "@TT Prison Cell/Chest"}, {{69, 4}})
         updateSectionChestCountFromRoomSlotList(segment, {"@Thieves Town/Big Chest", "@TT Big Chest/Chest"}, {{68, 4}})
@@ -453,8 +480,9 @@ function updateRoomsFromMemorySegment(segment)
         updateSectionChestCountFromRoomSlotList(segment, {"@Misery Mire/Spike Switch", "@MM Spike Room/Chest"}, {{179, 4}})
         updateSectionChestCountFromRoomSlotList(segment, {"@Misery Mire/Bridge", "@MM Bridge/Chest"}, {{162, 4}})
         updateSectionChestCountFromRoomSlotList(segment, {"@Misery Mire/Main Hub", "@MM Main Hub/Chest"}, {{194, 4}})
-        updateSectionChestCountFromRoomSlotList(segment, {"@Misery Mire/Left Side"}, {{193, 4}, {209, 4}})
-        updateSectionChestCountFromRoomSlotList(segment, {"@Misery Mire/Blue Peg Chest", "@MM Blue Pegs/Chest"}, {{195, 5}})
+        updateSectionChestCountFromRoomSlotList(segment, {"@Misery Mire/Torch Tiles Chest", "@MM Torch Tiles/Chest"}, {{193, 4}})
+        updateSectionChestCountFromRoomSlotList(segment, {"@Misery Mire/Torch Cutscene", "@MM Torch Cutscene/Chest"}, {{209, 4}})
+        updateSectionChestCountFromRoomSlotList(segment, {"@Misery Mire/Right Blue Pegs Chest", "@MM Right Blue Pegs/Chest"}, {{195, 5}})
         updateSectionChestCountFromRoomSlotList(segment, {"@Misery Mire/Big Chest", "@MM Big Chest/Chest"}, {{195, 4}})
         updateSectionChestCountFromRoomSlotList(segment, {"@Misery Mire/Vitreous", "@MM Vitreous/Prize"}, {{144, 11}})
 
@@ -481,8 +509,12 @@ function updateRoomsFromMemorySegment(segment)
         updateSectionChestCountFromRoomSlotList(segment, {"@Ganon's Tower/Pre-Moldorm", "@GT Pre-Moldorm/Chest"}, {{61, 6}})
         updateSectionChestCountFromRoomSlotList(segment, {"@Ganon's Tower/Validation", "@GT Validation/Chest"}, {{77, 4}})
 
+        --Dungeon Map Locations
+        updateSectionChestCountFromRoomSlotList(segment, {"@GT Bob/Chest"}, {{140, 7}})
+        updateSectionChestCountFromRoomSlotList(segment, {"@GT Ice Armos/Chest"}, {{28, 4}, {28, 5}, {28, 6}})
+
         --Key Drop Locations
-        if OBJ_POOL and OBJ_POOL.CurrentStage > 0 then
+        if OBJ_POOL_KEYDROP and OBJ_POOL_KEYDROP.CurrentStage > 0 then
             updateSectionChestCountFromRoomSlotList(segment, {"@Hyrule Castle & Escape/Key Guard", "@HC Key Guard/Guard"}, {{114, 10}})
             updateSectionChestCountFromRoomSlotList(segment, {"@Hyrule Castle & Escape/Boomerang Guard", "@HC Boomerang/Guard"}, {{113, 10}})
             updateSectionChestCountFromRoomSlotList(segment, {"@Hyrule Castle & Escape/Ball 'N Chain Guard", "@HC Ball 'N Chain/Guard"}, {{128, 10}})
@@ -527,36 +559,6 @@ function updateRoomsFromMemorySegment(segment)
             updateSectionChestCountFromRoomSlotList(segment, {"@Ganon's Tower/Post-Compass Key", "@GT Post-Compass/Pot"}, {{123, 10}})
             updateSectionChestCountFromRoomSlotList(segment, {"@Ganon's Tower/Mini Helmasaur Key", "@GT Mini Helmasaur/Mini Helmasaur"}, {{61, 10}})
         end
-
-        --Dungeon Map Locations
-        updateSectionChestCountFromRoomSlotList(segment, {"@EP Cannonball/Chest"}, {{185, 4}})
-        updateSectionChestCountFromRoomSlotList(segment, {"@EP Hook/Chest"}, {{170, 4}})
-        updateSectionChestCountFromRoomSlotList(segment, {"@EP Stalfos Spawn/Chest"}, {{168, 4}})
-
-        updateSectionChestCountFromRoomSlotList(segment, {"@TH Lobby/Chest"}, {{119, 4}})
-        updateSectionChestCountFromRoomSlotList(segment, {"@TH Cage/Item"}, {{135, 10}})
-
-        updateSectionChestCountFromRoomSlotList(segment, {"@SP Left Side Chest/Chest"}, {{52, 4}})
-        updateSectionChestCountFromRoomSlotList(segment, {"@SP Big Key Chest/Chest"}, {{53, 4}})
-        updateSectionChestCountFromRoomSlotList(segment, {"@SP Flooded Treasure/Chest"}, {{118, 4}, {118, 5}})
-        updateSectionChestCountFromRoomSlotList(segment, {"@SP Snake Waterfall/Chest"}, {{102, 4}})
-
-        updateSectionChestCountFromRoomSlotList(segment, {"@SW Map Chest/Chest"}, {{88, 5}})
-        updateSectionChestCountFromRoomSlotList(segment, {"@SW Gibdo Prison/Chest"}, {{87, 5}})
-        updateSectionChestCountFromRoomSlotList(segment, {"@SW Compass Chest/Chest"}, {{103, 4}})
-        updateSectionChestCountFromRoomSlotList(segment, {"@SW Pinball/Chest"}, {{104, 4}})
-        updateSectionChestCountFromRoomSlotList(segment, {"@SW Statue Switch/Chest"}, {{87, 4}})
-
-        updateSectionChestCountFromRoomSlotList(segment, {"@TT Main Lobby/Chest"}, {{219, 4}})
-        updateSectionChestCountFromRoomSlotList(segment, {"@TT Ambush/Chest"}, {{203, 4}})
-        updateSectionChestCountFromRoomSlotList(segment, {"@TT SE Lobby/Chest"}, {{220, 4}})
-        updateSectionChestCountFromRoomSlotList(segment, {"@TT Big Key Chest/Chest"}, {{219, 5}})
-
-        updateSectionChestCountFromRoomSlotList(segment, {"@MM Torch Tiles/Chest"}, {{193, 4}})
-        updateSectionChestCountFromRoomSlotList(segment, {"@MM Torch Cutscene/Chest"}, {{209, 4}})
-
-        updateSectionChestCountFromRoomSlotList(segment, {"@GT Bob/Chest"}, {{140, 7}})
-        updateSectionChestCountFromRoomSlotList(segment, {"@GT Ice Armos/Chest"}, {{28, 4}, {28, 5}, {28, 6}})
     else
         --Marking Bosses as Complete
         updateBossChestCountFromRoom(segment, "@Eastern Palace/Armos", {200, 11})

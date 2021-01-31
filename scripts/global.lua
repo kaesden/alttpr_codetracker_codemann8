@@ -37,7 +37,7 @@ DOORSLOTS = { -- 1  2  3  4  5  6  7  8  9  10 11 12 13 14 15 16
     [0x56] = {0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0},
     [0x58] = {0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0},
     [0x5e] = {0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0},
-    [0x5f] = {0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0},
+    [0x5f] = {1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
     [0x60] = {0, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0},
     [0x61] = {0, 1, 0, 1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0},
     [0x62] = {1, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0},
@@ -45,7 +45,7 @@ DOORSLOTS = { -- 1  2  3  4  5  6  7  8  9  10 11 12 13 14 15 16
     [0x68] = {0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
     [0x72] = {0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0},
     [0x74] = {0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 0, 1, 0, 0, 0, 0},
-    [0x76] = {1, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0},
+    [0x76] = {1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0},
     [0x77] = {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1},
     [0x7d] = {0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0},
     [0x7e] = {0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0},
@@ -73,7 +73,7 @@ DOORSLOTS = { -- 1  2  3  4  5  6  7  8  9  10 11 12 13 14 15 16
     [0xc5] = {1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0},
     [0xc6] = {1, 0, 1, 0, 0, 0, 1, 0, 1, 1, 0, 1, 0, 0, 0, 0},
     [0xcb] = {0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0},
-    [0xcc] = {1, 0, 1, 1, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0},
+    [0xcc] = {1, 0, 5, 1, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0},
     [0xd1] = {1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
     [0xdb] = {0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0},
     [0xdc] = {1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
@@ -174,7 +174,7 @@ function initGlobalVars()
         OBJ_ENTRANCE = Tracker:FindObjectForCode("entrance_shuffle")
         OBJ_DOORSHUFFLE = Tracker:FindObjectForCode("door_shuffle")
         OBJ_RETRO = Tracker:FindObjectForCode("retro_mode")
-        OBJ_POOL = Tracker:FindObjectForCode("pool_mode")
+        OBJ_POOL_KEYDROP = Tracker:FindObjectForCode("pool_keydrop")
         OBJ_GLITCH = Tracker:FindObjectForCode("glitch_mode")
         OBJ_RACEMODE = Tracker:FindObjectForCode("race_mode")
 
@@ -189,6 +189,9 @@ function initGlobalVars()
             Tracker:FindObjectForCode("race_mode_surrogate").ItemState:setState(1)
         end
 
+        --Default Selected Door Icon Selectore
+        Tracker:FindObjectForCode("doorslot_x").ItemState:setState(1)
+
         TRACKER_READY = true
 
         updateIcons()
@@ -200,7 +203,7 @@ function initGlobalVars()
     TRACKER_READY = true
 end
 
-function updateIcons()
+function updateIcons(updateDoorCounts)
     if not TRACKER_READY then
         for i = 1, #DungeonList do
             local item = Tracker:FindObjectForCode(DungeonList[i] .. "_item").ItemState
@@ -210,21 +213,9 @@ function updateIcons()
         for i = 1, #DungeonList do
             local item = Tracker:FindObjectForCode(DungeonList[i] .. "_item").ItemState
             local key = Tracker:FindObjectForCode(DungeonList[i] .. "_smallkey")
-            if OBJ_DOORSHUFFLE.CurrentStage == 2 then
-                if item.MaxCount ~= 99 then
-                    item.MaxCount = 99
-                    item.AcquiredCount = 99
-                end
-                item.SwapActions = true
-                key.MaxCount = 99
-                key.Icon = ImageReference:FromPackRelativePath("images/SmallKey2.png", "@disabled")
-
-                if (OBJ_POOL.CurrentStage == 0 and DungeonList[i] == "hc") or DungeonList[i] == "at" then
-                    Tracker:FindObjectForCode(DungeonList[i] .. "_bigkey").Icon = ImageReference:FromPackRelativePath("images/BigKey.png", "@disabled")
-                end
-            else
+            if OBJ_DOORSHUFFLE.CurrentStage < 2 then
                 key.MaxCount = DungeonData[DungeonList[i]][2]
-                if OBJ_POOL.CurrentStage > 0 then
+                if OBJ_POOL_KEYDROP.CurrentStage > 0 then
                     key.MaxCount = key.MaxCount + DungeonData[DungeonList[i]][3]
                 end
 
@@ -232,10 +223,10 @@ function updateIcons()
                     key.Icon = ""
                 end
 
-                if OBJ_POOL.CurrentStage > 0 and DungeonList[i] == "hc" then
+                if OBJ_POOL_KEYDROP.CurrentStage > 0 and DungeonList[i] == "hc" then
                     local bk = Tracker:FindObjectForCode(DungeonList[i] .. "_bigkey")
                     bk.Icon = ImageReference:FromPackRelativePath("images/BigKey.png", (not bk.Active and "@disabled" or ""))
-                elseif (OBJ_POOL.CurrentStage == 0 and DungeonList[i] == "hc") or DungeonList[i] == "at" then
+                elseif (OBJ_POOL_KEYDROP.CurrentStage == 0 and DungeonList[i] == "hc") or DungeonList[i] == "at" then
                     local bk = Tracker:FindObjectForCode(DungeonList[i] .. "_bigkey")
                     if bk.Icon ~= "" then
                         bk.Icon = ""
@@ -249,7 +240,7 @@ function updateIcons()
 
                 local chest = Tracker:FindObjectForCode(DungeonList[i] .. "_chest")
                 item.MaxCount = chest.MaxCount
-                if OBJ_POOL.CurrentStage > 0 then
+                if OBJ_POOL_KEYDROP.CurrentStage > 0 then
                     item.MaxCount = item.MaxCount + DungeonData[DungeonList[i]][3] + (DungeonList[i] == "hc" and 1 or 0)
                 end
 
@@ -262,7 +253,7 @@ function updateIcons()
                 if OBJ_KEYSANITY_SMALL.CurrentStage == 0 and key then
                     item.MaxCount = item.MaxCount - key.MaxCount
                 end
-                if OBJ_KEYSANITY_BIG.CurrentStage == 0 and DungeonList[i] ~= "at" and not (DungeonList[i] == "hc" and OBJ_POOL.CurrentStage == 0) then
+                if OBJ_KEYSANITY_BIG.CurrentStage == 0 and DungeonList[i] ~= "at" and not (DungeonList[i] == "hc" and OBJ_POOL_KEYDROP.CurrentStage == 0) then
                     item.MaxCount = item.MaxCount - 1
                 end
 
@@ -301,13 +292,13 @@ function updateIcons()
 
         local gtbk = Tracker:FindObjectForCode("gt_bkgame")
         if OBJ_DOORSHUFFLE.CurrentStage == 0 then
-            if OBJ_POOL.CurrentStage == 0 then
+            if OBJ_POOL_KEYDROP.CurrentStage == 0 then
                 gtbk.MaxCount = 22
             else
                 gtbk.MaxCount = 25
             end
         elseif OBJ_DOORSHUFFLE.CurrentStage == 1 then
-            if OBJ_POOL.CurrentStage == 0 then
+            if OBJ_POOL_KEYDROP.CurrentStage == 0 then
                 gtbk.MaxCount = 27
             else
                 gtbk.MaxCount = 31
@@ -386,7 +377,8 @@ function removeGhost(section)
 end
 
 function updateDoorSlots(roomId, forceUpdate)
-    if roomId > 0 and DOORSLOTS[roomId] and ROOMSLOTS[1] ~= roomId then
+    local shouldUpdate = false
+    if roomId > 0 and DOORSLOTS[roomId] and ROOMSLOTS[1] ~= roomId and shouldShowRoom(roomId, AutoTracker:ReadU16(0x7e0022, 0), AutoTracker:ReadU16(0x7e0020, 0)) then
         local carried = ROOMSLOTS[1]
         ROOMSLOTS[1] = roomId
         for r = 2, #ROOMSLOTS do
@@ -398,8 +390,9 @@ function updateDoorSlots(roomId, forceUpdate)
             ROOMSLOTS[r] = carried
             carried = temp
         end
+        shouldUpdate = true
     end
-    if roomId > 0 or forceUpdate then
+    if shouldUpdate or forceUpdate then
         for r = 1, #ROOMSLOTS do
             if ROOMSLOTS[r] > 0 then
                 local item = Tracker:FindObjectForCode("roomSlot" .. math.floor(r))
@@ -412,6 +405,19 @@ function updateDoorSlots(roomId, forceUpdate)
             end
         end
     end
+end
+
+function shouldShowRoom(roomId, xCoord, yCoord)
+    if RoomNonLinearExclusions[roomId] then
+        print(string.format("0x%2x", roomId) .. ": " .. string.format("%3x", xCoord) .. " x " .. string.format("%3x", yCoord))
+        for i, rect in ipairs(RoomNonLinearExclusions[roomId]) do
+            if xCoord >= rect[1] and xCoord <= rect[2] and yCoord >= rect[3] and yCoord <= rect[4] then
+                print("Suppressed " .. string.format("0x%2x", roomId))
+                return false
+            end
+        end
+    end
+    return true
 end
 
 function JObjectToLuaTable(obj)
