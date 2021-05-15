@@ -99,36 +99,16 @@ function updateBottles(segment)
 end
 
 function updateBatIndicatorStatus(status)
-    local item = Tracker:FindObjectForCode("powder")
+    local item = Tracker:FindObjectForCode("powder_used")
     if item then
-        if status then
-            item.CurrentStage = 1
-        else
-            item.CurrentStage = 0
-        end
+        item.Active = status
     end
 end
 
 function updateShovelIndicatorStatus(status)
-    local item = Tracker:FindObjectForCode("shovel")
+    local item = Tracker:FindObjectForCode("shovel_used")
     if item then
-        if status then
-            item.CurrentStage = 1
-        else
-            item.CurrentStage = 0
-        end
-    end
-end
-
-function updateMushroomIndicator(segment)
-    local item = Tracker:FindObjectForCode("mushroom")
-    if item and segment then
-        local value = ReadU8(segment, 0x7ef212)
-        if value & 0x80 > 0 then
-            item.CurrentStage = 1
-        else
-            item.CurrentStage = 0
-        end
+        item.Active = status
     end
 end
 
@@ -149,13 +129,9 @@ function updateAga1(segment)
         item.Active = true
         if Tracker.ActiveVariantUID ~= "items_only" and OBJ_RACEMODE.CurrentStage == 0 then
             if OBJ_WORLDSTATE.CurrentStage == 1 then
-                if OBJ_DOORSHUFFLE.CurrentStage == 0 then
-                    item = Tracker:FindObjectForCode("castle_top")
-                else
-                    item = Tracker:FindObjectForCode("light_world")
-                end
+                item = Tracker:FindObjectForCode("castle_top")
             else
-                item = Tracker:FindObjectForCode("dw_east")
+                item = Tracker:FindObjectForCode("ow_pyramid")
             end
             item.Active = true
         end

@@ -4,79 +4,164 @@ NEW_KEY_SYSTEM = false
 
 DUNGEON_PRIZE_DATA = 0x0000
 
+ROOMCURSORPOSITION = 0
+ROOMCURSORRECENT = 0
 ROOMSLOTS = { 0, 0, 0, 0 }
 
-DOORSLOTS = { -- 1  2  3  4  5  6  7  8  9  10 11 12 13 14 15 16
-    [0x01] = {0, 1, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    --[0x07] = {0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1},--Moldorm Boss Arena
-    [0x09] = {0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0},
-    [0x0a] = {0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0},
-    [0x0c] = {1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0},
-    [0x11] = {0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0},
-    [0x14] = {0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0},
-    [0x15] = {1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    [0x17] = {1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0},
-    [0x1a] = {0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0},
-    [0x1e] = {0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 1, 0},
-    [0x24] = {1, 0, 5, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    [0x26] = {0, 1, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0},
-    [0x27] = {1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0},
-    [0x2a] = {1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0},
-    [0x2b] = {1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0},
-    [0x31] = {0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0},
-    [0x34] = {0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0},
-    [0x35] = {0, 0, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0},
-    [0x36] = {0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0},
-    [0x37] = {0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0},
-    [0x38] = {1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    [0x3a] = {1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 0, 0},
-    [0x45] = {1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    [0x4a] = {1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0},
-    [0x4d] = {1, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-    [0x52] = {0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0},
-    [0x56] = {0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0},
-    [0x58] = {0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0},
-    [0x5e] = {0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0},
-    [0x5f] = {1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    [0x60] = {0, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0},
-    [0x61] = {0, 1, 0, 1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0},
-    [0x62] = {1, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0},
-    [0x67] = {0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0},
-    [0x68] = {0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    [0x72] = {0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0},
-    [0x74] = {0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 0, 1, 0, 0, 0, 0},
-    [0x76] = {1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0},
-    [0x77] = {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1},
-    [0x7d] = {0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0},
-    [0x7e] = {0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0},
-    [0x81] = {1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0},
-    [0x84] = {1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0},
-    [0x85] = {1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0},
-    [0x8b] = {1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0},
-    [0x8c] = {1, 0, 1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0},
-    [0x8d] = {0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0},
-    [0x97] = {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0},
-    [0x9c] = {1, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    [0x9e] = {0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1},
-    [0xa2] = {0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0},
-    [0xa8] = {0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0},
-    [0xa9] = {0, 5, 0, 1, 1, 0, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0},
-    [0xb1] = {0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 5, 0, 0, 0},
-    [0xb2] = {0, 5, 1, 0, 0, 0, 1, 0, 1, 1, 0, 1, 0, 0, 0, 0},
-    [0xb3] = {1, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0},
-    [0xbb] = {1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0},
-    [0xbc] = {1, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0},
-    [0xbe] = {0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0},
-    [0xc1] = {0, 0, 1, 0, 0, 0, 1, 0, 1, 1, 0, 1, 0, 0, 0, 0},
-    [0xc2] = {1, 0, 1, 1, 0, 1, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0},
-    [0xc3] = {1, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    [0xc5] = {1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0},
-    [0xc6] = {1, 0, 1, 0, 0, 0, 1, 0, 1, 1, 0, 1, 0, 0, 0, 0},
-    [0xcb] = {0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0},
-    [0xcc] = {1, 0, 5, 1, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0},
-    [0xd1] = {1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    [0xdb] = {0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0},
-    [0xdc] = {1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
+DOORSLOTS = {--1 2  3   4  5  6   7  8  9   10 11 12  13 14 15 16
+    [0x01] = {0, 1, 0,  1, 0, 0,  1, 0, 0,  0, 0, 0,  0, 0, 0, 0},
+    --[0x07] = {0, 0, 1,  0, 0, 0,  0, 0, 0,  0, 0, 0, 1, 0, 0, 1},--Moldorm Boss Arena
+    [0x09] = {0, 1, 0,  0, 0, 0,  0, 0, 0,  0, 0, 0,  1, 0, 0, 0},
+    --[0x0a] = {0, 1, 0,  0, 0, 0,  0, 0, 0,  0, 0, 0, 0, 1, 0, 0},--PoD Stalfos Basement
+    [0x0c] = {1, 1, 1,  0, 0, 0,  0, 0, 0,  0, 1, 0,  0, 0, 0, 0},
+    [0x11] = {0, 0, 1,  0, 0, 0,  0, 0, 0,  0, 0, 1,  0, 0, 0, 0},
+    [0x14] = {0, 0, 0,  1, 0, 0,  1, 0, 0,  1, 0, 0,  0, 0, 0, 0},
+    [0x15] = {1, 0, 0,  1, 0, 0,  0, 0, 0,  0, 0, 0,  0, 0, 0, 0},
+    [0x17] = {1, 0, 1,  0, 0, 0,  0, 0, 0,  0, 0, 0,  0, 0, 1, 0},
+    [0x1a] = {0, 1, 1,  1, 0, 0,  0, 0, 0,  1, 0, 1,  0, 0, 0, 0},
+    [0x1e] = {0, 0, 0,  0, 0, 0,  0, 0, 1,  0, 0, 1,  0, 1, 1, 0},
+    [0x24] = {1, 0, 6,  0, 0, 1,  0, 0, 0,  0, 0, 0,  0, 0, 0, 0},
+    [0x26] = {0, 1, 1,  0, 0, 0,  0, 1, 0,  0, 1, 0,  0, 0, 0, 0},
+    [0x27] = {1, 0, 1,  0, 0, 0,  0, 0, 0,  0, 0, 0,  1, 0, 1, 0},
+    [0x2a] = {1, 0, 0,  0, 0, 0,  0, 1, 0,  1, 0, 1,  0, 0, 0, 0},
+    [0x2b] = {1, 0, 0,  0, 1, 1,  0, 0, 0,  1, 0, 0,  0, 0, 0, 0},
+    [0x31] = {0, 0, 1,  0, 0, 0,  0, 0, 1,  0, 0, 0,  0, 0, 1, 0},
+    [0x34] = {0, 0, 0,  0, 0, 0,  1, 0, 1,  0, 0, 0,  0, 0, 1, 0},
+    [0x35] = {0, 0, 0,  0, 0, 1,  1, 0, 1,  0, 0, 0,  0, 0, 0, 0},
+    [0x36] = {0, 1, 0,  1, 0, 1,  0, 0, 1,  0, 1, 0,  0, 0, 0, 0},
+    [0x37] = {0, 0, 0,  1, 0, 1,  0, 0, 1,  0, 0, 0,  0, 0, 0, 0},
+    [0x38] = {1, 0, 0,  1, 0, 1,  0, 0, 0,  0, 0, 0,  0, 0, 0, 0},
+    [0x3a] = {1, 0, 1,  0, 0, 0,  0, 0, 0,  0, 1, 0,  1, 1, 0, 0},
+    [0x3d] = {0, 0, 0,  0, 0, 0,  0, 0, 0,  1, 0, 1,  0, 0, 0, 1},
+    [0x45] = {1, 0, 0,  1, 0, 1,  0, 0, 0,  0, 0, 0,  0, 0, 0, 0},
+    [0x4a] = {1, 1, 1,  0, 0, 0,  0, 0, 0,  0, 1, 0,  0, 0, 0, 0},
+    [0x4d] = {1, 0, 1,  0, 0, 1,  0, 0, 0,  0, 0, 0,  0, 0, 0, 1},
+    [0x52] = {0, 0, 0,  1, 0, 0,  0, 0, 0,  1, 1, 0,  0, 0, 0, 0},
+    [0x56] = {0, 0, 0,  0, 0, 0,  0, 0, 1,  1, 0, 0,  0, 0, 0, 0},
+    [0x58] = {0, 0, 0,  0, 0, 1,  0, 0, 0,  1, 0, 1,  0, 0, 0, 0},
+    [0x5e] = {0, 0, 0,  0, 0, 1,  0, 0, 1,  0, 0, 1,  0, 1, 0, 0},
+    [0x5f] = {1, 0, 1,  0, 1, 0,  0, 0, 0,  0, 0, 0,  0, 0, 0, 0},
+    [0x60] = {0, 0, 1,  0, 0, 0,  1, 1, 0,  0, 0, 1,  0, 0, 0, 0},
+    [0x61] = {0, 1, 0,  1, 1, 0,  0, 1, 0,  0, 1, 0,  0, 0, 0, 0},
+    [0x62] = {1, 1, 0,  0, 1, 0,  0, 0, 0,  1, 0, 0,  0, 0, 0, 0},
+    [0x67] = {0, 0, 1,  0, 0, 0,  0, 0, 1,  0, 0, 0,  0, 0, 0, 0},
+    [0x68] = {0, 0, 1,  0, 0, 1,  0, 0, 0,  0, 0, 0,  0, 0, 0, 0},
+    [0x72] = {0, 1, 0,  0, 0, 0,  0, 0, 0,  1, 0, 0,  0, 0, 0, 0},
+    [0x74] = {0, 0, 0,  0, 0, 1,  0, 0, 1,  1, 0, 1,  0, 0, 0, 0},
+    [0x76] = {1, 1, 0,  0, 0, 0,  0, 0, 1,  0, 0, 0,  0, 0, 0, 0},
+    [0x77] = {1, 0, 0,  0, 0, 0,  0, 0, 0,  0, 1, 0,  0, 0, 1, 1},
+    [0x7d] = {0, 0, 0,  0, 0, 1,  0, 0, 1,  0, 0, 0,  0, 0, 0, 0},
+    [0x7e] = {0, 0, 0,  0, 0, 1,  1, 0, 0,  0, 0, 1,  0, 0, 1, 0},
+    [0x81] = {1, 0, 0,  0, 0, 0,  1, 0, 1,  0, 0, 0,  0, 0, 0, 0},
+    [0x84] = {1, 1, 1,  0, 0, 0,  1, 0, 0,  0, 1, 0,  0, 0, 0, 0},
+    [0x85] = {1, 0, 1,  1, 0, 0,  0, 0, 0,  0, 0, 1,  0, 0, 0, 0},
+    [0x8b] = {1, 0, 0,  0, 0, 0,  1, 0, 0,  1, 0, 0,  0, 0, 0, 0},
+    [0x8c] = {1, 0, 1,  1, 0, 0,  1, 0, 0,  1, 0, 0,  0, 0, 0, 0},
+    [0x8d] = {0, 0, 1,  1, 0, 0,  0, 0, 0,  0, 0, 1,  0, 0, 0, 0},
+    [0x96] = {0, 0, 0,  1, 0, 0,  0, 0, 0,  0, 0, 0,  0, 0, 0, 1},
+    [0x97] = {0, 0, 0,  0, 0, 0,  0, 0, 0,  0, 0, 0,  1, 0, 1, 0},
+    [0x9c] = {1, 0, 1,  0, 0, 1,  0, 0, 0,  0, 0, 0,  0, 0, 0, 0},
+    [0x9e] = {0, 0, 1,  0, 0, 0,  0, 0, 1,  0, 0, 0,  0, 0, 0, 1},
+    [0xa2] = {0, 1, 0,  0, 0, 0,  0, 0, 0,  0, 1, 1,  0, 0, 0, 0},
+    [0xa8] = {0, 0, 0,  0, 0, 0,  1, 1, 0,  0, 0, 0,  0, 0, 0, 0},
+    [0xa9] = {0, 6, 0,  1, 1, 0,  1, 1, 0,  0, 1, 0,  0, 0, 0, 0},
+    [0xb1] = {0, 0, 1,  0, 0, 0,  0, 0, 0,  0, 0, 1,  6, 0, 0, 0},
+    [0xb2] = {0, 6, 1,  0, 0, 0,  1, 0, 1,  1, 0, 1,  0, 0, 0, 0},
+    [0xb3] = {1, 0, 0,  1, 0, 1,  0, 0, 0,  1, 0, 0,  0, 0, 0, 0},
+    [0xbb] = {1, 0, 0,  0, 0, 0,  1, 0, 1,  0, 0, 0,  0, 0, 0, 0},
+    [0xbc] = {1, 0, 1,  1, 0, 1,  0, 0, 0,  0, 0, 1,  0, 0, 0, 0},
+    [0xbe] = {0, 0, 1,  0, 0, 0,  0, 0, 1,  0, 0, 1,  0, 0, 0, 0},
+    [0xc1] = {0, 0, 1,  0, 0, 0,  1, 0, 1,  1, 0, 1,  0, 0, 0, 0},
+    [0xc2] = {1, 0, 1,  1, 0, 1,  1, 1, 1,  0, 0, 1,  0, 0, 0, 0},
+    [0xc3] = {1, 0, 0,  1, 1, 1,  0, 0, 0,  0, 0, 0,  0, 0, 0, 0},
+    [0xc5] = {1, 0, 0,  0, 0, 1,  0, 0, 0,  1, 0, 0,  0, 0, 0, 0},
+    [0xc6] = {1, 0, 1,  0, 0, 0,  1, 0, 1,  1, 0, 1,  0, 0, 0, 0},
+    [0xcb] = {0, 0, 0,  0, 0, 0,  1, 1, 1,  0, 1, 1,  0, 0, 0, 0},
+    [0xcc] = {1, 0, 6,  1, 1, 1,  0, 0, 0,  1, 1, 0,  0, 0, 0, 0},
+    [0xd1] = {0, 1, 1,  0, 0, 0,  0, 0, 0,  0, 0, 0,  0, 0, 0, 0},
+    [0xdb] = {0, 1, 1,  0, 0, 0,  0, 0, 0,  0, 1, 0,  0, 0, 0, 0},
+    [0xdc] = {1, 1, 0,  0, 1, 1,  0, 0, 0,  0, 0, 0,  0, 0, 0, 0},
+
+    [0x1000] = {1, 0, 0,  0, 0, 0,  1, 0, 0,  1, 1, 1,  0, 0, 0, 0},
+    [0x1002] = {0, 0, 0,  1, 0, 0,  0, 0, 0,  0, 1, 0,  0, 0, 0, 0},
+    [0x1003] = {0, 0, 0,  0, 0, 0,  1, 0, 1,  0, 0, 0,  0, 1, 0, 0},
+    [0x1005] = {0, 0, 0,  1, 0, 1,  1, 0, 0,  0, 0, 0,  0, 0, 0, 0},
+    [0x1007] = {0, 0, 0,  1, 0, 0,  0, 0, 0,  0, 0, 0,  0, 0, 1, 0},
+    [0x100a] = {0, 1, 0,  0, 0, 0,  0, 0, 0,  0, 1, 0,  0, 0, 0, 0},
+    [0x100f] = {0, 0, 1,  0, 0, 0,  0, 0, 0,  0, 0, 1,  0, 0, 1, 0},
+    [0x1010] = {1, 0, 1,  0, 0, 0,  0, 0, 0,  1, 0, 1,  0, 0, 0, 1},
+    [0x1011] = {0, 0, 1,  0, 0, 0,  1, 0, 1,  0, 1, 0,  0, 0, 0, 0},
+    [0x1012] = {0, 1, 0,  1, 0, 1,  0, 1, 1,  1, 1, 0,  1, 0, 0, 0},
+    [0x1013] = {0, 0, 0,  0, 1, 1,  0, 1, 0,  0, 0, 0,  0, 0, 0, 0},
+    [0x1014] = {0, 0, 0,  0, 1, 0,  0, 1, 0,  0, 0, 0,  0, 0, 0, 0},
+    [0x1015] = {0, 0, 0,  0, 1, 0,  1, 1, 1,  1, 1, 1,  0, 1, 0, 0},
+    [0x1016] = {0, 0, 0,  1, 1, 1,  1, 1, 0,  0, 0, 0,  0, 0, 0, 0},
+    [0x1017] = {0, 0, 1,  1, 1, 0,  0, 0, 0,  0, 0, 0,  0, 0, 0, 0},
+    [0x1018] = {1, 1, 1,  0, 0, 0,  0, 0, 1,  0, 0, 1,  0, 0, 0, 0},
+    [0x101a] = {1, 1, 0,  0, 0, 0,  0, 1, 0,  0, 0, 0,  0, 0, 0, 0},
+    [0x101b] = {0, 0, 0,  1, 0, 0,  0, 0, 1,  1, 0, 1,  0, 0, 0, 1},
+    [0x101d] = {1, 1, 1,  0, 0, 0,  0, 0, 0,  1, 0, 0,  0, 0, 0, 0},
+    [0x101e] = {0, 0, 0,  0, 0, 0,  0, 0, 0,  1, 0, 1,  0, 0, 0, 0},
+    [0x1022] = {0, 0, 0,  0, 1, 0,  0, 0, 0,  0, 0, 0,  0, 0, 0, 0},
+    [0x1025] = {0, 1, 0,  1, 0, 0,  0, 0, 0,  0, 1, 0,  0, 0, 0, 0},
+    [0x1028] = {0, 0, 0,  0, 0, 0,  0, 0, 1,  0, 0, 0,  0, 0, 0, 0}, --Race Game
+    [0x1029] = {0, 0, 1,  0, 0, 1,  0, 0, 1,  0, 0, 0,  0, 0, 0, 0},
+    --[0x102a] = {0, 0, 0,  0, 0, 1,  0, 0, 0,  1, 0, 0,  0, 0, 0, 0}, --Flute Boy
+    [0x102b] = {1, 0, 0,  0, 0, 0,  1, 1, 1,  1, 0, 0,  0, 0, 0, 0},
+    [0x102c] = {0, 1, 0,  1, 1, 1,  0, 0, 1,  0, 1, 0,  0, 0, 0, 0},
+    [0x102d] = {0, 1, 0,  0, 0, 1,  1, 0, 1,  0, 1, 0,  0, 0, 0, 1},
+    [0x102e] = {1, 0, 0,  1, 1, 0,  0, 0, 0,  0, 1, 1,  0, 0, 0, 0},
+    [0x102f] = {0, 0, 1,  0, 0, 0,  0, 0, 0,  0, 0, 0,  0, 0, 0, 1},
+    [0x1030] = {0, 0, 0,  0, 0, 0,  0, 1, 1,  0, 0, 0,  0, 0, 0, 0},
+    [0x1032] = {1, 1, 0,  0, 0, 0,  0, 1, 0,  0, 0, 0,  0, 0, 0, 0},
+    [0x1033] = {1, 0, 0,  0, 1, 0,  1, 1, 1,  0, 1, 0,  0, 1, 0, 1},
+    [0x1034] = {0, 1, 0,  1, 1, 1,  0, 0, 0,  0, 1, 0,  0, 0, 0, 0},
+    [0x1035] = {1, 1, 1,  0, 0, 1,  0, 1, 1,  0, 0, 0,  0, 0, 0, 1},
+    [0x1037] = {0, 0, 0,  0, 0, 0,  0, 0, 0,  1, 0, 1,  0, 0, 0, 0},
+    [0x103a] = {0, 0, 0,  0, 1, 1,  0, 1, 1,  0, 0, 0,  0, 0, 0, 0},
+    [0x103b] = {0, 1, 0,  0, 1, 1,  0, 1, 0,  0, 0, 0,  0, 0, 0, 0},
+    [0x103c] = {0, 1, 0,  0, 1, 0,  0, 0, 1,  0, 0, 0,  0, 0, 0, 0},
+    [0x103f] = {0, 0, 1,  0, 1, 1,  0, 0, 0,  0, 0, 0,  1, 0, 0, 0},
+    [0x1040] = {0, 0, 0,  0, 0, 0,  1, 0, 0,  1, 1, 1,  0, 0, 0, 0},
+    [0x1042] = {0, 0, 0,  1, 0, 0,  0, 0, 0,  0, 1, 0,  0, 0, 0, 0},
+    [0x1043] = {0, 0, 0,  0, 0, 0,  1, 0, 1,  0, 0, 0,  0, 0, 0, 0},
+    [0x1045] = {0, 0, 0,  1, 0, 1,  1, 0, 0,  0, 0, 0,  0, 0, 0, 0},
+    [0x1047] = {0, 0, 0,  1, 0, 0,  0, 0, 0,  0, 0, 0,  0, 0, 0, 0},
+    [0x104a] = {0, 1, 0,  0, 0, 0,  0, 0, 0,  0, 1, 0,  0, 0, 0, 0},
+    --[0x104f] = {0, 0, 0,  0, 0, 0,  0, 0, 0,  0, 0, 1,  0, 0, 0, 0}, --Catfish
+    [0x1050] = {1, 0, 1,  0, 0, 0,  0, 0, 0,  1, 0, 1,  0, 0, 0, 0},
+    [0x1051] = {0, 0, 1,  0, 0, 0,  1, 0, 1,  0, 1, 0,  0, 0, 0, 0},
+    [0x1052] = {0, 1, 0,  1, 0, 1,  0, 1, 1,  1, 1, 0,  0, 0, 0, 0},
+    [0x1053] = {0, 0, 0,  0, 1, 1,  0, 1, 0,  0, 0, 0,  1, 0, 0, 0},
+    [0x1054] = {0, 0, 0,  0, 1, 0,  0, 1, 0,  0, 0, 0,  0, 0, 0, 0},
+    [0x1055] = {0, 0, 0,  0, 1, 0,  1, 1, 1,  1, 1, 1,  0, 1, 0, 0},
+    [0x1056] = {0, 0, 0,  0, 1, 1,  1, 1, 0,  0, 0, 0,  0, 0, 0, 0},
+    [0x1057] = {0, 0, 1,  1, 1, 0,  0, 0, 0,  0, 0, 0,  0, 0, 0, 0},
+    [0x1058] = {1, 1, 1,  0, 0, 0,  0, 0, 1,  0, 0, 1,  0, 0, 0, 0},
+    [0x105a] = {1, 1, 0,  0, 0, 0,  0, 0, 0,  0, 0, 0,  0, 0, 0, 0},
+    [0x105b] = {0, 0, 0,  0, 0, 0,  0, 1, 0,  1, 0, 1,  0, 0, 0, 0},
+    [0x105d] = {1, 1, 1,  0, 0, 0,  0, 0, 0,  1, 0, 0,  0, 0, 0, 0},
+    [0x105e] = {0, 0, 0,  0, 0, 0,  0, 0, 0,  1, 0, 1,  0, 0, 0, 0},
+    [0x1062] = {0, 0, 0,  0, 1, 0,  0, 0, 0,  0, 0, 0,  0, 0, 0, 0},
+    [0x1065] = {0, 1, 0,  1, 0, 0,  0, 0, 0,  0, 1, 0,  0, 0, 0, 0},
+    [0x1068] = {0, 0, 0,  0, 0, 0,  0, 1, 1,  0, 0, 0,  0, 0, 0, 0},
+    [0x1069] = {0, 0, 1,  0, 1, 1,  0, 0, 1,  0, 0, 0,  0, 0, 0, 0},
+    --[0x106a] = {0, 0, 0,  0, 0, 1,  0, 0, 0,  1, 0, 0,  0, 0, 0, 0}, --Stumpy
+    [0x106b] = {1, 0, 0,  0, 0, 0,  1, 1, 1,  1, 0, 0,  0, 0, 0, 0},
+    [0x106c] = {0, 1, 0,  1, 1, 1,  0, 0, 1,  0, 1, 0,  0, 0, 0, 0},
+    [0x106d] = {0, 1, 0,  0, 0, 1,  1, 1, 0,  0, 1, 0,  0, 0, 0, 0},
+    [0x106e] = {1, 0, 0,  1, 1, 0,  0, 0, 0,  0, 1, 1,  0, 0, 0, 0},
+    [0x106f] = {0, 0, 1,  0, 0, 0,  0, 0, 0,  0, 0, 0,  0, 0, 0, 0},
+    --[0x1070] = {0, 0, 0,  0, 0, 0,  0, 0, 0,  0, 0, 0,  0, 0, 0, 0}, --Mire
+    [0x1072] = {1, 1, 0,  0, 0, 0,  0, 1, 0,  0, 0, 0,  0, 0, 1, 0},
+    [0x1073] = {1, 0, 0,  0, 1, 0,  1, 1, 1,  0, 1, 0,  0, 0, 0, 0},
+    [0x1074] = {0, 1, 0,  1, 1, 1,  0, 0, 0,  0, 1, 0,  0, 0, 0, 0},
+    [0x1075] = {1, 1, 1,  0, 0, 1,  0, 1, 1,  0, 0, 0,  0, 0, 0, 0},
+    [0x1077] = {0, 0, 0,  0, 0, 0,  0, 0, 0,  1, 0, 1,  0, 0, 0, 0},
+    [0x107a] = {0, 0, 0,  0, 0, 0,  0, 1, 1,  0, 0, 0,  0, 0, 0, 0},
+    [0x107b] = {0, 1, 0,  0, 1, 1,  0, 1, 0,  0, 0, 0,  0, 0, 0, 0},
+    [0x107c] = {0, 1, 0,  0, 1, 0,  0, 0, 1,  0, 0, 0,  0, 0, 0, 0},
+    [0x107f] = {0, 0, 1,  0, 1, 1,  0, 0, 0,  0, 0, 0,  1, 0, 0, 0}
 }
 
 function loadDungeonChests()
@@ -173,6 +258,7 @@ function initGlobalVars()
         OBJ_KEYSANITY_BIG = Tracker:FindObjectForCode("keysanity_bigkey")
         OBJ_ENTRANCE = Tracker:FindObjectForCode("entrance_shuffle")
         OBJ_DOORSHUFFLE = Tracker:FindObjectForCode("door_shuffle")
+        OBJ_OWSHUFFLE = Tracker:FindObjectForCode("ow_shuffle")
         OBJ_RETRO = Tracker:FindObjectForCode("retro_mode")
         OBJ_POOL_KEYDROP = Tracker:FindObjectForCode("pool_keydrop")
         OBJ_GLITCH = Tracker:FindObjectForCode("glitch_mode")
@@ -189,7 +275,7 @@ function initGlobalVars()
             Tracker:FindObjectForCode("race_mode_surrogate").ItemState:setState(1)
         end
 
-        --Default Selected Door Icon Selectore
+        --Default Selected Door Icon Selector
         Tracker:FindObjectForCode("doorslot_x").ItemState:setState(1)
 
         TRACKER_READY = true
@@ -214,10 +300,11 @@ function updateIcons(updateDoorCounts)
             local item = Tracker:FindObjectForCode(DungeonList[i] .. "_item").ItemState
             local key = Tracker:FindObjectForCode(DungeonList[i] .. "_smallkey")
             if OBJ_DOORSHUFFLE.CurrentStage < 2 then
-                key.MaxCount = DungeonData[DungeonList[i]][2]
+                local newMax = DungeonData[DungeonList[i]][2]
                 if OBJ_POOL_KEYDROP.CurrentStage > 0 then
-                    key.MaxCount = key.MaxCount + DungeonData[DungeonList[i]][3]
+                    newMax = newMax + DungeonData[DungeonList[i]][3]
                 end
+                key.MaxCount = newMax
 
                 if key.MaxCount == 0 then
                     key.Icon = ""
@@ -239,23 +326,24 @@ function updateIcons(updateDoorCounts)
                 end
 
                 local chest = Tracker:FindObjectForCode(DungeonList[i] .. "_chest")
-                item.MaxCount = chest.MaxCount
+                newMax = chest.MaxCount
                 if OBJ_POOL_KEYDROP.CurrentStage > 0 then
-                    item.MaxCount = item.MaxCount + DungeonData[DungeonList[i]][3] + (DungeonList[i] == "hc" and 1 or 0)
+                    newMax = newMax + DungeonData[DungeonList[i]][3] + (DungeonList[i] == "hc" and 1 or 0)
                 end
 
                 if Tracker:FindObjectForCode("keysanity_map").CurrentStage == 0 and DungeonList[i] ~= "at" then
-                    item.MaxCount = item.MaxCount - 1
+                    newMax = newMax - 1
                 end
                 if Tracker:FindObjectForCode("keysanity_compass").CurrentStage == 0 and DungeonList[i] ~= "hc" and DungeonList[i] ~= "at" then
-                    item.MaxCount = item.MaxCount - 1
+                    newMax = newMax - 1
                 end
                 if OBJ_KEYSANITY_SMALL.CurrentStage == 0 and key then
-                    item.MaxCount = item.MaxCount - key.MaxCount
+                    newMax = newMax - key.MaxCount
                 end
                 if OBJ_KEYSANITY_BIG.CurrentStage == 0 and DungeonList[i] ~= "at" and not (DungeonList[i] == "hc" and OBJ_POOL_KEYDROP.CurrentStage == 0) then
-                    item.MaxCount = item.MaxCount - 1
+                    newMax = newMax - 1
                 end
+                item.MaxCount = newMax
 
                 item.AcquiredCount = math.max(item.MaxCount - found, 0)
 
@@ -377,31 +465,69 @@ function removeGhost(section)
 end
 
 function updateDoorSlots(roomId, forceUpdate)
+    local roomToLoad = roomId
+    if LinkedRoomSurrogates[roomId] then
+        roomToLoad = LinkedRoomSurrogates[roomId]
+    end
     local shouldUpdate = false
-    if roomId > 0 and DOORSLOTS[roomId] and ROOMSLOTS[1] ~= roomId and shouldShowRoom(roomId, AutoTracker:ReadU16(0x7e0022, 0), AutoTracker:ReadU16(0x7e0020, 0)) then
-        local carried = ROOMSLOTS[1]
-        ROOMSLOTS[1] = roomId
-        for r = 2, #ROOMSLOTS do
-            if ROOMSLOTS[r] == roomId then
+    if roomToLoad > 0 and DOORSLOTS[roomToLoad] and ROOMSLOTS[ROOMCURSORPOSITION] ~= roomToLoad and shouldShowRoom(roomToLoad, AutoTracker:ReadU16(0x7e0022, 0), AutoTracker:ReadU16(0x7e0020, 0)) then
+        if LAYOUT_ROOM_SLOT_METHOD == "top" then
+            local carried = ROOMSLOTS[1]
+            ROOMSLOTS[1] = roomToLoad
+            for r = 2, #ROOMSLOTS do
+                if ROOMSLOTS[r] == roomToLoad then
+                    ROOMSLOTS[r] = carried
+                    break
+                end
+                local temp = ROOMSLOTS[r]
                 ROOMSLOTS[r] = carried
-                break
+                carried = temp
             end
-            local temp = ROOMSLOTS[r]
-            ROOMSLOTS[r] = carried
-            carried = temp
+            ROOMCURSORPOSITION = 1
+        elseif LAYOUT_ROOM_SLOT_METHOD == "next" then
+            ROOMCURSORPOSITION = (ROOMCURSORPOSITION % 4) + 1
+            ROOMSLOTS[ROOMCURSORPOSITION] = roomToLoad
+        else
+            local found = false
+            for r = 1, #ROOMSLOTS do
+                if ROOMSLOTS[r] == roomToLoad then
+                    ROOMCURSORPOSITION = r
+                    found = true
+                    break
+                end
+            end
+            if not found then
+                ROOMCURSORPOSITION = (ROOMCURSORRECENT % 4) + 1
+                ROOMCURSORRECENT = ROOMCURSORPOSITION
+                ROOMSLOTS[ROOMCURSORPOSITION] = roomToLoad
+            end
         end
         shouldUpdate = true
     end
     if shouldUpdate or forceUpdate then
-        for r = 1, #ROOMSLOTS do
-            if ROOMSLOTS[r] > 0 then
-                local item = Tracker:FindObjectForCode("roomSlot" .. math.floor(r))
-                item.Icon = ImageReference:FromPackRelativePath("images/rooms/" .. string.format("%02x", ROOMSLOTS[r]) .. ".png")
-                
-                for d = 1, #DOORSLOTS[ROOMSLOTS[r]] do
-                    item = Tracker:FindObjectForCode("doorSlot" .. math.floor(r) .. "_" .. math.floor(d)).ItemState
-                    item:setState(DOORSLOTS[ROOMSLOTS[r]][d])
-                end
+        refreshDoorSlots()
+    end
+end
+
+function refreshDoorSlots()
+    for r = 1, #ROOMSLOTS do
+        if ROOMSLOTS[r] > 0 then
+            local item = Tracker:FindObjectForCode("roomSlot" .. math.floor(r))
+            local type = "rooms"
+            local id = ROOMSLOTS[r]
+            if ROOMSLOTS[r] >= 0x1000 then
+                type = "ow"
+                id = ROOMSLOTS[r] - 0x1000
+            end
+            if ROOMCURSORPOSITION == r then
+                item.Icon = ImageReference:FromPackRelativePath("images/" .. type .. "/" .. string.format("%02x", id) .. ".png", "overlay|images/overlay-highlighted.png")
+            else
+                item.Icon = ImageReference:FromPackRelativePath("images/" .. type .. "/" .. string.format("%02x", id) .. ".png")
+            end
+
+            for d = 1, #DOORSLOTS[ROOMSLOTS[r]] do
+                item = Tracker:FindObjectForCode("doorSlot" .. math.floor(r) .. "_" .. math.floor(d)).ItemState
+                item:setState(DOORSLOTS[ROOMSLOTS[r]][d])
             end
         end
     end
@@ -409,10 +535,8 @@ end
 
 function shouldShowRoom(roomId, xCoord, yCoord)
     if RoomNonLinearExclusions[roomId] then
-        print(string.format("0x%2x", roomId) .. ": " .. string.format("%3x", xCoord) .. " x " .. string.format("%3x", yCoord))
         for i, rect in ipairs(RoomNonLinearExclusions[roomId]) do
             if xCoord >= rect[1] and xCoord <= rect[2] and yCoord >= rect[3] and yCoord <= rect[4] then
-                print("Suppressed " .. string.format("0x%2x", roomId))
                 return false
             end
         end

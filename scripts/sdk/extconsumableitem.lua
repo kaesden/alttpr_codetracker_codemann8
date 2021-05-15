@@ -35,7 +35,7 @@ function ExtendedConsumableItem:UpdateBadgeAndIcon()
             self.ItemInstance.BadgeText = text .. "/" .. tostring(math.floor(self.MaxCount))
         end
     end
-    if not self.SwapActions and self:getProperty("section") then
+    if not self.SwapActions and Tracker.ActiveVariantUID ~= "items_only_keys" and self:getProperty("section") then
         local access = self:getProperty("section").AccessibilityLevel
 
         if access == AccessibilityLevel.Normal then
@@ -74,6 +74,10 @@ function ExtendedConsumableItem:UpdateBadgeAndIcon()
             self.ItemInstance.BadgeTextColor = "WhiteSmoke"
         end
     end
+end
+
+function ExtendedConsumableItem:InvalidateAccessibility()
+    
 end
 
 function ExtendedConsumableItem:onLeftClick()

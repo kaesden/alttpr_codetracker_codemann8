@@ -4,25 +4,56 @@ DoorSlot.Icons = {
     [1] = "unknown",
     [2] = "overlayX",
     [3] = "caution",
-    [4] = "SmallKey2",
-    [5] = "BigKey",
-    [6] = "boss",
-    [7] = "crystalswitch",
-    [8] = "peg-blue",
-    [9] = "peg-red",
-    [10] = "bow",
-    [11] = "0002",
-    [12] = "firesource",
-    [13] = "0005",
-    [14] = "0010",
-    [15] = "0007",
+    [4] = "exit",
+    [5] = "SmallKey2",
+    [6] = "BigKey",
+    [7] = "boss",
+    [8] = "crystalswitch",
+    [9] = "peg-blue",
+    [10] = "peg-red",
+    [11] = "firesource",
+    [12] = "0005",
+    [13] = "0010",
+    [14] = "0007",
+    [15] = "0015",
     [16] = "0011",
-    [17] = "0015",
-    [18] = "0021",
-    [19] = "0019",
-    [20] = "0020",
-    [21] = "0023",
-    [22] = "weapon"
+    [17] = "0002",
+    [18] = "bow",
+    [19] = "0021",
+    [20] = "0019",
+    [21] = "0020",
+    [22] = "0023",
+    [23] = "weapon",
+    [24] = "1",
+    [25] = "2",
+    [26] = "3",
+    [27] = "4",
+    [28] = "5",
+    [29] = "6"
+}
+DoorSlot.OWIcons = {
+    [4] = "portal",
+    [5] = "SmallKey2",
+    [6] = "BigKey",
+    [7] = "boss",
+    [8] = "frog",
+    [9] = "purplechest",
+    [10] = "potionshop",
+    [11] = "0005",
+    [12] = "0010",
+    [13] = "0007",
+    [15] = "0018",
+    [16] = "0014",
+    [17] = "0011",
+    [18] = "0002",
+    [22] = "weapon",
+    [23] = "",
+    [24] = "1",
+    [25] = "2",
+    [26] = "3",
+    [27] = "4",
+    [28] = "5",
+    [29] = "6"
 }
 
 function DoorSlot:init(roomSlotNum, doorSlotNum)
@@ -47,7 +78,14 @@ function DoorSlot:setDisabled()
 end
 
 function DoorSlot:updateIcon()
-    local imgPath = "images/" .. DoorSlot.Icons[self:getState()] .. ".png"
+    local img = ""
+    if ROOMSLOTS[self.roomSlot] > 0x1000 then
+        img = DoorSlot.OWIcons[self:getState()]
+    end
+    if not img or img == "" then
+        img = DoorSlot.Icons[self:getState()]
+    end
+    local imgPath = "images/" .. img .. ".png"
     self.ItemInstance.Icon = ImageReference:FromPackRelativePath(imgPath)
 end
 
@@ -67,6 +105,7 @@ function DoorSlot:onLeftClick()
         DOORSLOTS[ROOMSLOTS[self.roomSlot]][self.doorSlot] = state
     end
     self:setState(state)
+    refreshDoorSlots()
 end
 
 function DoorSlot:onRightClick()
@@ -81,6 +120,7 @@ function DoorSlot:onRightClick()
         DOORSLOTS[ROOMSLOTS[self.roomSlot]][self.doorSlot] = state
     end
     self:setState(state)
+    refreshDoorSlots()
 end
 
 function DoorSlot:canProvideCode(code)

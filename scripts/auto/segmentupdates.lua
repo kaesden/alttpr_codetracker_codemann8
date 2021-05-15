@@ -49,8 +49,9 @@ function updateOverworldIdFromMemorySegment(segment)
     InvalidateReadCaches()
 
     local owarea = ReadU8(segment, 0x7e008a)
+    OBJ_MODULE.AcquiredCount = AutoTracker:ReadU8(0x7e0010, 0)
     if not (OBJ_DUNGEON.AcquiredCount == 0xff and OBJ_MODULE.AcquiredCount == 0x09) then --force OW transitions to retain OW ID
-        if (owarea == 0 and (OBJ_MODULE.AcquiredCount == 0x06 or OBJ_MODULE.AcquiredCount == 0x0f)) --transitioning into dungeons
+        if (owarea == 0 and (OBJ_MODULE.AcquiredCount == 0x07 or OBJ_MODULE.AcquiredCount == 0x05 or OBJ_MODULE.AcquiredCount == 0x0e or OBJ_MODULE.AcquiredCount == 0x17 or OBJ_MODULE.AcquiredCount == 0x11 or OBJ_MODULE.AcquiredCount == 0x06 or OBJ_MODULE.AcquiredCount == 0x0f)) --transitioning into dungeons
                 or owarea > 0x81 then --transitional OW IDs are ignored ie. 0x96
             owarea = 0xff
         end
@@ -59,7 +60,7 @@ function updateOverworldIdFromMemorySegment(segment)
     if OBJ_OWAREA.AcquiredCount ~= owarea then
         --Update Dungeon Image (Prep)
         local updateImage = false
-        if OBJ_OWAREA.AcquiredCount == 255
+        if OBJ_OWAREA.AcquiredCount == 0xff
                 or (owarea >= 0x40 and owarea < 0x80 and OBJ_OWAREA.AcquiredCount < 0x40) 
                 or (owarea < 0x40 and OBJ_OWAREA.AcquiredCount >= 0x40 and OBJ_OWAREA.AcquiredCount < 0x80) then
             updateImage = true
@@ -68,13 +69,28 @@ function updateOverworldIdFromMemorySegment(segment)
         OBJ_OWAREA.AcquiredCount = owarea
 
         if OBJ_OWAREA.AcquiredCount < 0xff then
+            --OW Shuffle Autotracking
+            if OBJ_OWSHUFFLE and OBJ_OWSHUFFLE.CurrentStage > 0 and not AUTOTRACKER_HAS_DONE_POST_GAME_SUMMARY then
+                updateDoorSlots(OBJ_OWAREA.AcquiredCount + 0x1000)
+            end
+
             --Region Autotracking
-            if OBJ_ENTRANCE.CurrentStage > 0 and OBJ_RACEMODE.CurrentStage == 0 and (not AUTOTRACKER_DISABLE_REGION_TRACKING) and Tracker.ActiveVariantUID ~= "items_only" then
-                if OBJ_OWAREA.AcquiredCount < 0xff and OverworldIdRegionMap[OBJ_OWAREA.AcquiredCount] then
-                    local region = Tracker:FindObjectForCode(OverworldIdRegionMap[OBJ_OWAREA.AcquiredCount])
-                    if region then
-                        region.Active = true
-                    end
+            if (OBJ_ENTRANCE.CurrentStage > 0 or OBJ_OWSHUFFLE.CurrentStage > 0) and OBJ_RACEMODE.CurrentStage == 0 and (not AUTOTRACKER_DISABLE_REGION_TRACKING) and Tracker.ActiveVariantUID ~= "items_only" then
+                if OBJ_OWAREA.AcquiredCount < 0xff then
+                    if OverworldIdRegionMap[OBJ_OWAREA.AcquiredCount] then
+                        local region = Tracker:FindObjectForCode(OverworldIdRegionMap[OBJ_OWAREA.AcquiredCount])
+                        if region then
+                            region.Active = true
+                        end
+                        
+                    elseif OverworldIdPearlRegionMap[OBJ_OWAREA.AcquiredCount]
+                        and ((OBJ_WORLDSTATE.CurrentStage == 0 and OBJ_OWAREA.AcquiredCount < 0x40)
+                            or (OBJ_WORLDSTATE.CurrentStage == 1 and OBJ_OWAREA.AcquiredCount >= 0x40)) then
+                        local region = Tracker:FindObjectForCode(OverworldIdPearlRegionMap[OBJ_OWAREA.AcquiredCount])
+                        if region then
+                            region.Active = true
+                        end
+                    end  
                 end
             end
 
@@ -188,9 +204,9 @@ function updateItemsFromMemorySegment(segment)
 
     if not AUTOTRACKER_DISABLE_ITEM_TRACKING then
         updateProgressiveItemFromByte(segment, "sword", 0x7ef359, 1)
-        updateProgressiveItemFromByte(segment, "shield", 0x7ef35a, 0)
-        updateProgressiveItemFromByte(segment, "armor", 0x7ef35b, 0)
-        updateProgressiveItemFromByte(segment, "gloves", 0x7ef354, 0)
+        updateProgressiveItemFromByte(segment, "shield", 0x7ef35a)
+        updateProgressiveItemFromByte(segment, "armor", 0x7ef35b)
+        updateProgressiveItemFromByte(segment, "gloves", 0x7ef354)
         updateProgressiveItemFromByte(segment, "halfmagic", 0x7ef37b)
 
         updateToggleItemFromByte(segment, "hookshot", 0x7ef342)
@@ -276,6 +292,12 @@ function updateOverworldEventsFromMemorySegment(segment)
 end
 
 function updateShopsFromMemorySegment(segment)
+    if not isInGame() then
+        return false
+    end
+
+    InvalidateReadCaches()
+
     updateSectionChestCountFromBytesAndFlag(segment, "@Dark Death Mountain Shop/Items", { 0x7ef302, 0x7ef303, 0x7ef304 }, 0xff)
     updateSectionChestCountFromBytesAndFlag(segment, "@Shield Shop/Items", { 0x7ef305, 0x7ef306, 0x7ef307 }, 0xff)
     updateSectionChestCountFromBytesAndFlag(segment, "@Dark Lake Shop/Items", { 0x7ef308, 0x7ef309, 0x7ef30a }, 0xff)
@@ -286,6 +308,7 @@ function updateShopsFromMemorySegment(segment)
     updateSectionChestCountFromBytesAndFlag(segment, "@Kakariko Shop/Items", { 0x7ef317, 0x7ef318, 0x7ef319 }, 0xff)
     updateSectionChestCountFromBytesAndFlag(segment, "@Lake Shop/Items", { 0x7ef31a, 0x7ef31b, 0x7ef31c }, 0xff)
     updateSectionChestCountFromBytesAndFlag(segment, "@Potion Shop/Items", { 0x7ef31d, 0x7ef31e, 0x7ef31f }, 0xff)
+    updateSectionChestCountFromBytesAndFlag(segment, "@Pond of Happiness/Items", { 0x7ef320, 0x7ef321 }, 0xff)
 end
 
 function updateNPCItemFlagsFromMemorySegment(segment)
@@ -372,7 +395,7 @@ function updateRoomsFromMemorySegment(segment)
         updateToggleFromRoomSlot(segment, "tr", {164, 11})
 
         --Mushroom
-        updateMushroomIndicator(segment)
+        updateToggleItemFromByteAndFlag(segment, "mushroom_used", 0x7ef212, 0x80)
     end
 
     if AUTOTRACKER_DISABLE_LOCATION_TRACKING or Tracker.ActiveVariantUID == "items_only" then
@@ -589,7 +612,11 @@ function updateRoomsFromMemorySegment(segment)
     updateSectionChestCountFromRoomSlotList(segment, {"@Hookshot Cave/Bonkable Chest"}, {{60, 7}})
     updateSectionChestCountFromRoomSlotList(segment, {"@Hookshot Cave/Back"}, {{60, 4}, {60, 5}, {60, 6}})
     updateSectionChestCountFromRoomSlotList(segment, {"@Secret Passage/Hallway"}, {{85, 4}})
-    updateSectionChestCountFromRoomSlotList(segment, {"@Forest Hideout/Stash"}, {{225, 9, 4}})
+    if OBJ_WORLDSTATE.CurrentStage == 0 then
+        updateSectionChestCountFromRoomSlotList(segment, {"@Forest Hideout/Stash"}, {{225, 9, 4}})
+    else
+        updateSectionChestCountFromRoomSlotList(segment, {"@Forest Hideout/Stash"}, {{225, 9}})
+    end
     updateSectionChestCountFromRoomSlotList(segment, {"@Lumberjack Cave/Cave"}, {{226, 9}})
     updateSectionChestCountFromRoomSlotList(segment, {"@Spectacle Rock/Cave"}, {{234, 10, 2}})
     updateSectionChestCountFromRoomSlotList(segment, {"@Paradox Cave/Top"}, {{239, 4}, {239, 5}, {239, 6}, {239, 7}, {239, 8}})
