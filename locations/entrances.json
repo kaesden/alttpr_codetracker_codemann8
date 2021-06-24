@@ -1683,7 +1683,7 @@
             "world_state_open,@OW Bush Circle,mirror",
             "world_state_open,@South Dark World,mirror",
             "world_state_open,glitch_mode_ow,boots",
-            "world_state_inverted,@Light World",
+            "world_state_inverted,@OW Cave 45",
             "glitch_mode_major"
         ],
         "sections": [
@@ -2235,7 +2235,7 @@
         "short_name": "DM Entry",
         "parent": "OW Mountain Entry",
         "access_rules": [
-            "world_state_open,bumper_entrance,mirror",
+            "world_state_open,bumper_entry,mirror",
             "world_state_open,lift1",
             "world_state_open,glitch_mode_ow,boots",
             "world_state_inverted,pearl,lift1",
@@ -2443,7 +2443,7 @@
         "parent": "OW Death Mountain East Bottom",
         "access_rules": [
             "@OW Death Mountain East Top",
-            "world_state_open,ddm_tr_bridge,mirror"
+            "world_state_open,@TR Bridge Entrances OW,mirror"
         ],
         "sections": [
             {
@@ -2471,7 +2471,7 @@
         "short_name": "Mimic Cave",
         "parent": "OW Death Mountain East Bottom",
         "access_rules": [
-            "world_state_open,ddm_tr_bridge,mirror",
+            "world_state_open,@TR Bridge Entrances OW,mirror",
             "world_state_open,glitch_mode_ow,hammer,mirror",
             "world_state_inverted,@OW Death Mountain East Top"
         ],
@@ -2503,7 +2503,7 @@
         "access_rules": [
             "dm_east_connect",
             "@OW Death Mountain East Top",
-            "world_state_open,ddm_tr_safety,mirror"
+            "world_state_open,@TR Laser Entrance OW,mirror"
         ],
         "sections": [
             {
@@ -2559,7 +2559,7 @@
             "dm_east_connect",
             "@OW Death Mountain East Top",
             "world_state_open,lift2",
-            "world_state_open,ddm_tr_safety,mirror",
+            "world_state_open,@TR Laser Entrance OW,mirror",
             "world_state_open,@OW Dark Death Mountain East Bottom,pearl,mirror",
             "world_state_inverted,pearl,lift2"
         ],
@@ -3047,7 +3047,7 @@
         ]
     },
     {
-        "name": "Village of Outkasts Fortune Teller",
+        "name": "Village of Outcasts Fortune Teller",
         "short_name": "Dark Fortune",
         "parent": "OW Outcast Fortune",
         "sections": [
@@ -3067,7 +3067,7 @@
                 "capture_item": true,
                 "capture_item_layout": "tracker_capture_entrance",
                 "item_count": 1,
-                "hosted_item": "ow_outcasts"
+                "hosted_item": "ow_outcast_fortune"
             }
         ],
         "map_locations": [
@@ -3364,8 +3364,8 @@
             "crystal56:2",
             "crystal:7",
             "prize:10",
-            "world_state_open,glitch_mode_ow,boots,mirror",
-            "world_state_inverted,glitch_mode_ow,pearl,boots,mirror"
+            "world_state_open,glitch_mode_ow,@Vanilla OW Shuffle,boots,mirror",
+            "world_state_inverted,glitch_mode_ow,@Light World,mirror"
         ],
         "sections": [
             {
@@ -3852,7 +3852,7 @@
                 "capture_item": true,
                 "capture_item_layout": "tracker_capture_entrance",
                 "item_count": 1,
-                "hosted_item": "ow_hylia_northwest"
+                "hosted_item": "ow_ice_northwest"
             }
         ],
         "map_locations": [
@@ -4087,7 +4087,7 @@
                 "item_count": 1,
                 "capture_item": true,
                 "capture_item_layout": "tracker_capture_entrance",
-                "hosted_item": "bumper_entrance"
+                "hosted_item": "bumper_entry"
             }
         ],
         "map_locations": [
@@ -4373,7 +4373,6 @@
         "short_name": "TR Laser",
         "parent": "Dark Death Mountain Color",
         "access_rules": [
-            "ddm_tr_safety",
             "@TR Laser Entrance OW",
             "world_state_inverted,dm_east_connect,mirror"
         ],
@@ -4460,15 +4459,20 @@
         "short_name": "TR Entrance",
         "parent": "OW Turtle Rock",
         "access_rules": [
-            "@OW Turtle Rock",
+            "world_state_open,@OW Turtle Rock Pegs,lift2,hammer",
+            "world_state_open,glitch_mode_ow,@OW Turtle Rock Pegs,boots,hammer",
+            "world_state_open,glitch_mode_major,@OW Turtle Rock Pegs,hammer",
+            "world_state_inverted,@OW Turtle Rock",
             "{$hasNotSeenTurtleMedallion}"
         ],
         "sections": [
             {
                 "name": "Entrance",
                 "access_rules": [
-                    "$canUseMedallions,tr_medallion",
-                    "$canUseMedallions,bombos,ether,quake"
+                    "world_state_open,pearl,$canUseMedallions,tr_medallion",
+                    "world_state_inverted,$canUseMedallions,tr_medallion",
+                    "world_state_open,pearl,$canUseMedallions,bombos,ether,quake",
+                    "world_state_inverted,$canUseMedallions,bombos,ether,quake"
                 ],
                 "chest_unopened_img": "images/door_closed.png",
                 "chest_opened_img": "images/door_open.png",

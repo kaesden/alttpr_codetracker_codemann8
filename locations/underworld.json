@@ -368,7 +368,11 @@
     },
     {
         "name": "Link's House",
-        "parent": "OW Links House",
+        "parent": "Light World Color",
+        "access_rules": [
+            "world_state_open,@OW Links House",
+            "world_state_inverted,@OW Bomb Shop"
+        ],
         "sections": [
             {
                 "name": "By The Door",
@@ -489,9 +493,9 @@
             "world_state_open,@OW Bush Circle,mirror",
             "world_state_open,@South Dark World,mirror",
             "world_state_open,glitch_mode_ow,boots",
-            "world_state_inverted,@Light World,pearl",
-            "world_state_inverted,@Light World,[pearl],mirror",
-            "world_state_inverted,@Light World,glitch_mode_ow,mirror",
+            "world_state_inverted,pearl",
+            "world_state_inverted,[pearl],mirror",
+            "world_state_inverted,glitch_mode_ow,mirror",
             "glitch_mode_major",
             "{world_state_inverted}"
         ],
@@ -1008,7 +1012,7 @@
                 "name": "Shop",
                 "access_rules": [
                     "hammer",
-                    "world_state_inverted,@Light World,pearl,mirror",
+                    "world_state_inverted,@OW Kakariko Village,pearl,mirror",
                     "world_state_inverted,grass_house,mirror"
                 ],
                 "chest_unopened_img": "images/potionshop.png",
@@ -1023,7 +1027,7 @@
                 "name": "Items",
                 "access_rules": [
                     "hammer",
-                    "world_state_inverted,@Light World,pearl,mirror",
+                    "world_state_inverted,@OW Kakariko Village,pearl,mirror",
                     "world_state_inverted,grass_house,mirror"
                 ],
                 "visibility_rules": [ "entrance_shuffle_singleentryvanilla,pool_shopsanity_on" ],
@@ -1075,8 +1079,14 @@
         "parent": "OW Hammer Pegs",
         "access_rules": [
             "world_state_open,pearl,lift2",
+            "world_state_open,glitch_mode_ow,@OW Broken Bridge West,pearl,boots",
+            "world_state_open,glitch_mode_ow,@OW Hammer Bridge Top,pearl,boots",
+            "world_state_open,glitch_mode_ow,@OW Bomb Shop,pearl,boots",
             "world_state_inverted,lift2",
-            "world_state_inverted,@OW Blacksmith,mirror"
+            "world_state_inverted,@OW Blacksmith,mirror",
+            "world_state_inverted,glitch_mode_ow,@OW Broken Bridge West,boots",
+            "world_state_inverted,glitch_mode_ow,@OW Hammer Bridge Top,boots",
+            "world_state_inverted,glitch_mode_ow,@OW Bomb Shop,boots"
         ],
         "sections": [
             {
